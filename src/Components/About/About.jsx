@@ -38,13 +38,13 @@ export default function About() {
               EVENTS: <br />
             </div>
             <div className="ml-5">
-              A Short Film About Loving (2021) screenings: <br />
+              A Short Film About Loving (2021) past screenings: <br />
             </div>
             <div className="ml-8">
+              &#x2022; 2020 Cannes Indie Shorts Awards, Cannes, France <br />
               &#x2022; OKIA Outdoor Cinema, Hanoi, Vietnam <br />
               &#x2022; Fulbright University, HCMC, Vietnam <br />
-              &#x2022; Mahindra United World College, Pune, India <br />
-              &#x2022; 2020 Indie Shorts Awards, Cannes, France
+              &#x2022; Mahindra United World College, Pune, India
             </div>
           </div>
         </div>

@@ -20,6 +20,7 @@ class Film {
     thumbnail,
     youtube,
     url,
+    logo,
   ) {
     this.id = id //int, unique id of each film, starting from 1
     this.title = title //str, tile of project
@@ -35,6 +36,7 @@ class Film {
     this.thumbnail = thumbnail //str, src to film thumbnail
     this.youtube = youtube //link to a youtube video. right now, either trailer or full film
     this.url = url //url extention, for example: 'example-project-1' in 'abc.com/photo/example-project-1'
+    this.logo = logo //str, src to logos from film festivals
   }
 }
 
@@ -101,6 +103,9 @@ function fetchFilms(pathname) {
         } else if (content.includes('thumb')) {
           let thumbnail_path = path.join(pathname, dir, content)
           film.thumbnail = thumbnail_path
+        } else if (content.includes('logo')) {
+          let logo_path = path.join(pathname, dir, content)
+          film.logo = logo_path
         }
       }
     })

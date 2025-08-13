@@ -100,6 +100,11 @@ export default function Landing() {
                     {`${matchedFilm.runtime} mins`}
                   </div>
                 </div>
+                <div className="flex w-full items-center justify-start">
+                  <div className="film-landing-logo">
+                    <img src={matchedFilm.logo} alt="" />
+                  </div>
+                </div>
               </div>
               {!isMobileMode && (
                 <div className="film-landing-synopsis">

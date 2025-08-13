@@ -26,5 +26,6 @@ dist-ssr
 # /public/photography/
 # /public/film/
 /public/woodworking/
-/public/*.js
+/public/photoScan.js
+/public/filmScan.js
 /project_snapshots

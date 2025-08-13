@@ -18,7 +18,7 @@ export default function Carousel({
     height: `calc((100% - 2 * var(--slider-padding)) / ${albumsPerSlide} * 0.666)`,
   }
   const CAROUSEL_BTN_STYLE = {
-    display: 'block',
+    // display: 'block',
     position: 'absolute',
     top: '0%',
     height: '100%',
@@ -180,7 +180,7 @@ export default function Carousel({
         <button
           ref={carouselBtnLeft}
           style={CAROUSEL_BTN_STYLE}
-          className="carousel-btn carousel-btn-left"
+          className="carousel-btn carousel-btn-left flex items-center justify-center"
           onClick={prevSlide}
           disabled={leftDisabled}
         >
@@ -205,7 +205,7 @@ export default function Carousel({
         <button
           ref={carouselBtnRight}
           style={CAROUSEL_BTN_STYLE}
-          className="carousel-btn carousel-btn-right"
+          className="carousel-btn carousel-btn-right flex items-center justify-center"
           onClick={nextSlide}
           disabled={rightDisabled}
         >
