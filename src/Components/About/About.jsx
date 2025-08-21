@@ -17,23 +17,31 @@ export default function About() {
 
       <div className="about-text mb-[4rem] flex items-center justify-center">
         <div className="relative top-20 flex h-[90vh] w-[35%] max-w-[800px] min-w-[360px] flex-col gap-2 p-2">
-          <img src="about/about.jpg" alt="" />
-          <div className="border-green-500 p-2">
+          <img src="about/about.jpg" alt="" className="border-5" />
+          <div className="p-2">
             Duc Dam is a Vietnamese filmmaker, photographer, and web designer
             based in Hanoi and Philadelphia. For all inquries, please contact
-            via email.
+            via{' '}
+            <a
+              href={`mailto:ducdamchi@gmail.com?
+              &subject=Just visited your website`}
+              className="underline"
+            >
+              email
+            </a>
+            .
           </div>
-          <div className="border-green-500 p-2">
+          <div className="p-2">
             <div>
               EDUCATION: <br />
             </div>
             <div className="ml-5">
-              Swarthmore College, B.A. Computer Science and Chinese <br />
-              Mahindra United World College in India, International
-              Baccalaureate
+              Swarthmore College | BA - Computer Science and Chinese <br />
+              Mahindra United World College in India | IB - Math, Film, and
+              Philosophy
             </div>
           </div>
-          <div className="border-green-500 p-2">
+          {/* <div className="p-2">
             <div>
               EVENTS: <br />
             </div>
@@ -46,7 +54,7 @@ export default function About() {
               &#x2022; Fulbright University, HCMC, Vietnam <br />
               &#x2022; Mahindra United World College, Pune, India
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
 

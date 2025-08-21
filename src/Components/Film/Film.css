@@ -69,12 +69,16 @@
   color: white;
 }
 
-.film-landing-backArrow {
+.film-landing-backArrow,
+.film-modal-back,
+.film-modal-close {
   position: relative;
   transition: 200ms ease-out;
 }
 
-.film-landing-backArrow:hover {
+.film-landing-backArrow:hover,
+.film-modal-back:hover,
+.film-modal-close:hover {
   scale: 1.05;
   text-decoration: underline;
 }
@@ -113,13 +117,27 @@
   color: white;
 }
 
-.film-landing-synopsis {
+.film-landing-synopsis-press {
+  display: flex;
   flex-basis: 40%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  gap: 1rem;
   z-index: 2;
   padding: 1rem;
   max-width: 48rem;
   height: auto;
   color: white;
+}
+
+.film-landing-press {
+  transition: 200ms ease-out;
+}
+
+.film-landing-press:hover {
+  scale: 1.05;
+  text-decoration: underline;
 }
 
 .film-landing-logo {
@@ -137,7 +155,7 @@
     height: 20rem;
   }
   .poster {
-    max-width: 240px;
+    max-width: 15rem;
   }
 }
 
@@ -152,7 +170,7 @@
   }
 
   .poster {
-    max-width: 15rem;
+    max-width: 25rem;
   }
 }
 

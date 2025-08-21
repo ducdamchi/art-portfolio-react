@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDom from 'react-dom'
 import { useState, useRef, useEffect } from 'react'
 import '../../App.css'
-import './Photography.css'
+import './Film.css'
 import { PiGridNineBold } from 'react-icons/pi'
 import { TbSlideshow } from 'react-icons/tb'
 import { TbBackground } from 'react-icons/tb'
@@ -16,8 +16,8 @@ import { BiChevronLeft } from 'react-icons/bi'
 import { BiChevronRight } from 'react-icons/bi'
 
 export default function Modal({
-  album,
-  openModalId,
+  film,
+  openPressId,
   closeModal,
   screenHeight,
   screenWidth,
@@ -71,7 +71,7 @@ export default function Modal({
     setSlideIndex((prevIndex) => {
       let newIndex = prevIndex - 1
       if (newIndex < 0) {
-        newIndex = album.numImages - 1
+        newIndex = film.pressGallery.numImages - 1
       }
       return newIndex
     })
@@ -80,7 +80,7 @@ export default function Modal({
   function nextSlide() {
     setSlideIndex((prevIndex) => {
       let newIndex = prevIndex + 1
-      if (newIndex > album.numImages - 1) {
+      if (newIndex > film.pressGallery.numImages - 1) {
         newIndex = 0
       }
       return newIndex
@@ -204,7 +204,7 @@ export default function Modal({
   //   }
   // }, [bgColor])
 
-  if (openModalId === null) {
+  if (openPressId === null) {
     return null
   } else {
     return ReactDom.createPortal(
@@ -226,16 +226,18 @@ export default function Modal({
             <div className="modal-navbar flex w-[85%] max-w-[2400px] items-center justify-between gap-10 p-2 font-thin">
               {/* Button for closing modal, shared */}
               <button
-                className="modal-navbar-back flex items-center gap-1"
+                className="modal-navbar-back text-md duration-200 ease-out hover:scale-[1.1] sm:text-xl md:text-xl lg:text-2xl xl:text-3xl"
                 onClick={closeModal}
               >
-                <BiLeftArrowAlt className="text-xl" />
-                <div className="text-base">BACK</div>
+                <div className="film-modal-back flex items-center gap-1 text-base">
+                  <BiLeftArrowAlt className="text-xl" />
+                  <div className="text-base">BACK</div>
+                </div>
               </button>
 
               <div className="flex items-center gap-2">
                 <div className="text-xs font-thin md:text-sm xl:text-base">
-                  {`${slideIndex + 1}/${album.numImages}`}
+                  {`${slideIndex + 1}/${film.pressGallery.numImages}`}
                 </div>
 
                 {/* Button for switching between Slides View and Gallery View, shared */}
@@ -264,14 +266,14 @@ export default function Modal({
           {/* TITLE */}
           <div className="z-30 mb-10 flex w-full justify-center p-2 font-thin">
             <div className="modal-title capitalize normal-case">
-              {album.title}
+              {film.pressGallery.title}
             </div>
           </div>
 
           {/* IMAGE DISPLAY WINDOW */}
           <div
             className="modal-content relative h-full w-full"
-            // style={MODAL_CONTENT}
+            style={MODAL_CONTENT}
           >
             {/* MODAL - VIEWING WINDOW */}
             <div
@@ -293,7 +295,7 @@ export default function Modal({
               <div className="modal-center-flexItem flex h-full w-[80%] max-w-[2400px] flex-30 items-center justify-center">
                 {/* Slides View Mode */}
                 <div ref={slidesRef} className="slides-all h-full w-full">
-                  {album.imgList.map((slide) => (
+                  {film.pressGallery.imgList.map((slide) => (
                     <img
                       className="slides-each h-full w-full object-contain"
                       key={slide.id}
@@ -304,7 +306,7 @@ export default function Modal({
 
                 {/* Gallery View Mode */}
                 <div ref={galleryRef} className="gallery-all">
-                  {album.imgList.map((img) => (
+                  {film.pressGallery.imgList.map((img) => (
                     <img
                       className="gallery-each"
                       key={img.id}
@@ -336,7 +338,7 @@ export default function Modal({
               className="relative z-30 mt-2 flex w-full items-center justify-center font-thin"
             >
               <div className="modal-description w-[80%] max-w-[1600px] p-3 text-xs">
-                {album.imgList[slideIndex].description}
+                {film.pressGallery.imgList[slideIndex].description}
               </div>
             </div>
           )}

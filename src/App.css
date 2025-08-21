@@ -26,16 +26,19 @@ h1,
 .about-text,
 .wood-text,
 .photo-landing-info,
+.film-modal-close,
 .film-landing-info,
-.film-landing-synopsis,
+.film-landing-synopsis-press,
 .film-landing-mobile-info,
 .film-landing-backArrow,
 .photo-landing-backArrow,
 .photo-landing-mobile-title-year,
 .photo-landing-mobile-info,
 .photo-landing-buttons,
+.photo-landing-button-back,
 .modal-title,
-.modal-description {
+.modal-description,
+.modal-navbar-back {
   font-family: 'Candara', 'Optima', 'Helvetica', sans-serif;
 }
 
@@ -119,4 +122,10 @@ h1 {
 .navModal.open {
   transform: translateY(0%);
   /* max-height: 4rem; */
+}
+
+.navbar-item .active {
+  /* border-width: 1px;
+  padding: 2px; */
+  text-decoration: underline;
 }

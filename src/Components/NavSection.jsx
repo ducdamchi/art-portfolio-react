@@ -4,6 +4,7 @@ import { PiDotsThreeOutlineVertical } from 'react-icons/pi'
 import { BiMenu } from 'react-icons/bi'
 import { BiArrowBack } from 'react-icons/bi'
 import { MdClose } from 'react-icons/md'
+import '../App.css'
 // import NavModal from './NavModal'
 
 export default function NavSection() {
@@ -44,6 +45,18 @@ export default function NavSection() {
     }
   }
 
+  function CustomLink({ to, children, ...props }) {
+    const resolvedPath = useResolvedPath(to)
+    const isActive = useMatch({ path: resolvedPath.pathname, end: true })
+    return (
+      <div className={isActive ? 'active' : ''}>
+        <Link to={to} {...props}>
+          {children}
+        </Link>
+      </div>
+    )
+  }
+
   return (
     <>
       {!isHamburger && (
@@ -58,19 +71,19 @@ export default function NavSection() {
           {/* Navigation bar */}
           <nav className="m-2 flex max-w-[80%] items-center justify-center gap-2 p-2 font-medium">
             <div className="navbar-item m-1 inline-block p-1 duration-200 ease-out hover:scale-[1.05]">
-              <Link to="/photography">Photography</Link>
+              <CustomLink to="/photography">Photography</CustomLink>
             </div>
 
             <div className="navbar-item m-1 inline-block p-1 duration-200 ease-out hover:scale-[1.05]">
-              <Link to="/film">Film</Link>
+              <CustomLink to="/film">Film</CustomLink>
             </div>
 
-            <div className="navbar-item m-1 inline-block p-1 duration-200 ease-out hover:scale-[1.05]">
+            {/* <div className="navbar-item m-1 inline-block p-1 duration-200 ease-out hover:scale-[1.05]">
               <Link to="/woodworking">Woodworking</Link>
-            </div>
+            </div> */}
 
             <div className="navbar-item m-1 inline-block p-1 duration-200 ease-out hover:scale-[1.05]">
-              <Link to="/about">About</Link>
+              <CustomLink to="/about">About</CustomLink>
             </div>
           </nav>
         </div>
@@ -100,19 +113,19 @@ export default function NavSection() {
           <div className="navModal" ref={navModalRef}>
             <nav className="relative flex w-full flex-col">
               <div className="navbar-item inline-block w-full border-zinc-200 p-2 pl-5">
-                <Link to="/photography">Photography</Link>
+                <CustomLink to="/photography">Photography</CustomLink>
               </div>
 
               <div className="navbar-item inline-block w-full border-t-1 border-zinc-200 p-2 pl-5">
-                <Link to="/film">Film</Link>
+                <CustomLink to="/film">Film</CustomLink>
               </div>
 
-              <div className="navbar-item inline-block w-full border-t-1 border-zinc-200 p-2 pl-5">
+              {/* <div className="navbar-item inline-block w-full border-t-1 border-zinc-200 p-2 pl-5">
                 <Link to="/woodworking">Woodworking</Link>
-              </div>
+              </div> */}
 
               <div className="navbar-item inline-block w-full border-t-1 border-zinc-200 p-2 pl-5">
-                <Link to="/about">About</Link>
+                <CustomLink to="/about">About</CustomLink>
               </div>
             </nav>
           </div>

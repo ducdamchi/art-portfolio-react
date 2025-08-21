@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import '../../App.css'
 import './Film.css'
 import Modal from './Film_Modal'
+import PressGalleryModal from './Film_Modal_Press'
 import filmsData from './films.json'
 import { BiLeftArrowAlt, BiLogoGmail } from 'react-icons/bi'
 import { BiLogoInstagramAlt } from 'react-icons/bi'
@@ -12,13 +13,16 @@ import { BiLogoGithub } from 'react-icons/bi'
 import { BiArrowBack } from 'react-icons/bi'
 import { BiPlay } from 'react-icons/bi'
 import { BiTimeFive } from 'react-icons/bi'
+import { BiNews } from 'react-icons/bi'
 
 export default function Landing() {
   const [openModalId, setOpenModalId] = useState(null)
-  const [screenWidth, setScreenWidth] = useState(window.innerWidth)
-  const [isMobileMode, setIsMobileMode] = useState(false)
   const [modalOpened, setModalOpened] = useState(false)
-
+  const [openPressId, setOpenPressId] = useState(null)
+  const [pressOpened, setPressOpened] = useState(false)
+  const [isMobileMode, setIsMobileMode] = useState(false)
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth)
+  const [screenHeight, setScreenHeight] = useState(window.innerHeight)
   const { filmURL } = useParams()
 
   const matchedFilm = filmsData.find((film) => film.url === filmURL)
@@ -27,6 +31,7 @@ export default function Landing() {
   useEffect(() => {
     const handleResize = () => {
       setScreenWidth(window.innerWidth)
+      setScreenHeight(window.innerHeight)
     }
     handleResize()
     window.addEventListener('resize', handleResize)
@@ -37,8 +42,10 @@ export default function Landing() {
 
   /* Flag mobile mode if screenwidth smaller than 768px */
   useEffect(() => {
-    screenWidth < 768 ? setIsMobileMode(true) : setIsMobileMode(false)
-    console.log(`Mobile mode: ${isMobileMode}`)
+    screenWidth < 768 || screenHeight < 768
+      ? setIsMobileMode(true)
+      : setIsMobileMode(false)
+    // console.log(`Mobile mode: ${isMobileMode}`)
   }, [screenWidth])
 
   if (!matchedFilm) {
@@ -68,7 +75,7 @@ export default function Landing() {
                   className="flex items-center gap-1 font-bold"
                 >
                   <BiLeftArrowAlt className="text-xl" />
-                  BACK
+                  <div className="text-lg">BACK</div>
                 </Link>
               </div>
             </div>
@@ -107,9 +114,23 @@ export default function Landing() {
                 </div>
               </div>
               {!isMobileMode && (
-                <div className="film-landing-synopsis">
-                  <div className="font-bold">SYNOPSIS</div>
-                  <div>{matchedFilm.synopsis}</div>
+                <div className="film-landing-synopsis-press">
+                  <div className="film-landing-synopsis">
+                    <div className="font-bold">SYNOPSIS</div>
+                    <div>{matchedFilm.synopsis}</div>
+                  </div>
+                  <div
+                    className="film-landing-press flex items-center gap-1 border-1 p-2"
+                    onClick={() => {
+                      setOpenPressId(matchedFilm.id)
+                      setPressOpened(true)
+                    }}
+                  >
+                    <div>
+                      <BiNews />
+                    </div>
+                    <div className="font-bold">PRESS GALLERY</div>
+                  </div>
                 </div>
               )}
             </div>
@@ -117,6 +138,13 @@ export default function Landing() {
 
           {!isMobileMode && (
             <div className="film-landing-footer absolute bottom-0 z-100 flex w-[100%] items-center justify-between p-3">
+              <div className="">
+                <div className="flex items-center gap-1 text-[0.6rem] font-thin">
+                  <span className="footer-text text-white">
+                    ALL IMAGES &#169; DUC DAM 2025
+                  </span>
+                </div>
+              </div>
               <div className="flex gap-2 text-center text-white">
                 <div className="flex items-center text-2xl">
                   <a
@@ -131,25 +159,17 @@ export default function Landing() {
                     <BiLogoInstagramAlt />
                   </a>
                 </div>
-                <div className="text-2xl">
+                {/* <div className="text-2xl">
                   <a href="https://github.com/ducdamchi" target="_blank">
                     <BiLogoGithub />
                   </a>
-                </div>
-              </div>
-
-              <div className="">
-                <div className="flex items-center gap-1 text-[0.6rem] font-thin">
-                  <span className="footer-text text-white">
-                    ALL IMAGES &#169; DUC DAM 2025
-                  </span>
-                </div>
+                </div> */}
               </div>
             </div>
           )}
         </div>
 
-        {isMobileMode && !modalOpened && (
+        {isMobileMode && !modalOpened && !pressOpened && (
           <div className="relative">
             <div className="film-landing-mobileBottom relative bg-zinc-50">
               <div className="film-landing-mobile-info flex flex-col justify-center gap-2 p-6">
@@ -158,10 +178,33 @@ export default function Landing() {
                   <br />
                 </div>
                 <div>{matchedFilm.synopsis}</div>
+                <div className="film-landing-press-mobile">
+                  <div className="flex w-[50%] items-center gap-1 border-1 p-1 pl-2.5">
+                    <div>
+                      <BiNews />
+                    </div>
+                    <div
+                      className=""
+                      onClick={() => {
+                        setOpenPressId(matchedFilm.id)
+                        setPressOpened(true)
+                      }}
+                    >
+                      PRESS GALLERY
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
 
             <div className="film-landing-mobileFooter relative bottom-0 z-100 flex w-[100%] items-center justify-between p-3">
+              <div className="">
+                <div className="flex items-center gap-1 text-[0.6rem] font-thin">
+                  <span className="footer-text text-black">
+                    ALL IMAGES &#169; DUC DAM 2025
+                  </span>
+                </div>
+              </div>
               <div className="flex gap-2 text-center text-black">
                 <div className="flex items-center text-2xl">
                   <a
@@ -176,19 +219,11 @@ export default function Landing() {
                     <BiLogoInstagramAlt />
                   </a>
                 </div>
-                <div className="text-2xl">
+                {/* <div className="text-2xl">
                   <a href="https://github.com/ducdamchi" target="_blank">
                     <BiLogoGithub />
                   </a>
-                </div>
-              </div>
-
-              <div className="">
-                <div className="flex items-center gap-1 text-[0.6rem] font-thin">
-                  <span className="footer-text text-black">
-                    ALL IMAGES &#169; DUC DAM 2025
-                  </span>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>
@@ -204,6 +239,22 @@ export default function Landing() {
           closeModal={() => {
             setOpenModalId(null)
             setModalOpened(false)
+            // console.log('closing modal')
+          }}
+        />
+      )}
+
+      {/* Press Gallery Modal Viewer, hidden until press gallery button is clicked on, then rendered on portal different from root */}
+      {matchedFilm.id === openPressId && (
+        <PressGalleryModal
+          film={matchedFilm}
+          openPressId={openPressId}
+          screenHeight={screenHeight}
+          screenWidth={screenWidth}
+          isMobileMode={isMobileMode}
+          closeModal={() => {
+            setOpenPressId(null)
+            setPressOpened(false)
             // console.log('closing modal')
           }}
         />

@@ -11,6 +11,11 @@ export default function Footer() {
   return (
     <>
       <div className="fixed bottom-0 z-100 flex w-[100%] items-center justify-between bg-zinc-50 p-3">
+        <div className="text-black">
+          <div className="flex items-center gap-1 text-[0.6rem] font-thin">
+            <span className="footer-text">ALL IMAGES &#169; DUC DAM 2025</span>
+          </div>
+        </div>
         <div className="flex gap-2 text-center text-black">
           <div className="flex items-center text-2xl">
             <a
@@ -31,12 +36,6 @@ export default function Footer() {
               <BiLogoGithub />
             </a>
           </div> */}
-        </div>
-
-        <div className="text-black">
-          <div className="flex items-center gap-1 text-[0.6rem] font-thin">
-            <span className="footer-text">ALL IMAGES &#169; DUC DAM 2025</span>
-          </div>
         </div>
       </div>
     </>

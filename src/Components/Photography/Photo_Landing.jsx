@@ -29,6 +29,7 @@ export default function Landing() {
   // const [domColor, setDomColor] = useState(null)
   const imgRef = useRef(null)
   const infoBoxRef = useRef(null)
+  const headerRef = useRef(null)
 
   const { photoURL } = useParams()
 
@@ -118,13 +119,37 @@ export default function Landing() {
 
     const img = imgRef.current
     const infoBox = infoBoxRef.current
+    const header = headerRef.current
     const colorThief = new ColorThief()
 
     const applyColor = () => {
       try {
         const color = colorThief.getColor(img) // sync
-        const rgb = `rgb(${color[0]}, ${color[1]}, ${color[2]})`
-        if (infoBox) infoBox.style.borderColor = rgb
+        /* Check brightness of dominant color to ensure readability 
+      Formula: https://www.nbdtech.com/Blog/archive/2008/04/27/Calculating-the-Perceived-Brightness-of-a-Color.aspx */
+        const brightness = Math.round(
+          Math.sqrt(
+            color[0] * color[0] * 0.241 +
+              color[1] * color[1] * 0.691 +
+              color[2] * color[2] * 0.068,
+          ),
+        )
+        // const rgb = `rgb(${color[0]}, ${color[1]}, ${color[2]})`
+        /* If bg dark enough, font can be white */
+        if (brightness < 130) {
+          infoBox.style.borderColor = `rgba(${color[0]}, ${color[1]}, ${color[2]}, 0.85)`
+          header.style.backgroundColor = `rgba(${color[0]}, ${color[1]}, ${color[2]}, 0.85)`
+          /* If bg a little light, reduce each rgb value by 33% */
+        } else if (130 <= brightness < 194) {
+          infoBox.style.borderColor = `rgba(${color[0] * 0.66}, ${color[1] * 0.66}, ${color[2] * 0.66}, 0.85)`
+          header.style.backgroundColor = `rgba(${color[0] * 0.66}, ${color[1] * 0.66}, ${color[2] * 0.66}, 0.85)`
+          /* If bg too light, reduce each rgb value by 66% */
+        } else {
+          infoBox.style.borderColor = `rgba(${color[0] * 0.33}, ${color[1] * 0.33}, ${color[2] * 0.33}, 0.85)`
+          header.style.backgroundColor = `rgba(${color[0] * 0.33}, ${color[1] * 0.33}, ${color[2] * 0.33}, 0.85)`
+        }
+        // if (infoBox) infoBox.style.borderColor = rgb
+        // if (header) header.style.backgroundColor = rgb
       } catch (err) {
         console.warn('ColorThief error:', err)
       }
@@ -157,6 +182,7 @@ export default function Landing() {
           />
           <div className="photo-landing-overlay"></div>
 
+          {/* MOBILE MODE */}
           {isMobileMode && !modalOpened && (
             <>
               <div className="photo-landing-backArrow-wrapper-2 flex justify-center">
@@ -164,7 +190,7 @@ export default function Landing() {
                   <div className="photo-landing-backArrow z-10">
                     <Link
                       to={`/photography`}
-                      className="flex items-center gap-1 font-bold"
+                      className="flex items-center gap-1 text-base"
                     >
                       <BiLeftArrowAlt className="text-xl" />
                       BACK
@@ -206,10 +232,25 @@ export default function Landing() {
             <>
               <div className="photo-landing-info-wrapper flex justify-center">
                 <div
-                  className="photo-landing-info-all flex flex-col border-3"
+                  className="photo-landing-info-all flex flex-col border-0"
                   id={`photo-landing-info-all-${matchedAlbum.id}`}
                   ref={infoBoxRef}
                 >
+                  <div
+                    className="photo-landing-header p-3 pl-6"
+                    ref={headerRef}
+                  >
+                    <div className="photo-landing-button-back z-2 flex w-[15%] items-center justify-start text-white">
+                      <Link
+                        to={`/photography`}
+                        onClick={() => console.log('clicked on link')}
+                        className="z-10 flex items-center justify-center"
+                      >
+                        <BiLeftArrowAlt className="text-xl" />
+                        <div className="text-base">BACK</div>
+                      </Link>
+                    </div>
+                  </div>
                   <div className="photo-landing-info flex flex-col p-6">
                     <div className="photo-landing-info-title">
                       {matchedAlbum.title}
@@ -230,32 +271,30 @@ export default function Landing() {
                       ))}
                     </div>
                   </div>
-                  <div className="photo-landing-buttons absolute bottom-0 flex w-full justify-between p-6">
-                    <div className="photo-landing-button-back z-2 flex items-center justify-center">
-                      <Link
-                        to={`/photography`}
-                        onClick={() => console.log('clicked on link')}
-                        className="z-10 flex items-center justify-center"
-                      >
-                        <BiLeftArrowAlt className="text-2xl" />
-                        BACK
-                      </Link>
-                    </div>
+                  <div className="photo-landing-buttons absolute bottom-0 flex w-full justify-center p-6">
                     <div
-                      className="photo-landing-button-view z-10 flex items-center justify-center"
+                      className="photo-landing-button-view z-10 flex items-center justify-center gap-1 border-1 p-2"
                       onClick={() => {
                         setOpenModalId(matchedAlbum.id)
                         setModalOpened(true)
                       }}
                     >
-                      <div className="">VIEW</div>
-                      <BiRightArrowAlt className="text-2xl" />
+                      <BiFolderOpen className="text-xl" />
+                      <div className="text-base">VIEW</div>
+                      {/* <BiRightArrowAlt className="text-xl" /> */}
                     </div>
                   </div>
                 </div>
               </div>
 
               <div className="photo-landing-footer absolute bottom-0 z-100 flex w-[100%] items-center justify-between p-3">
+                <div className="">
+                  <div className="flex items-center gap-1 text-[0.6rem] font-thin">
+                    <span className="footer-text text-white">
+                      ALL IMAGES &#169; DUC DAM 2025
+                    </span>
+                  </div>
+                </div>
                 <div className="flex gap-2 text-center text-white">
                   <div className="flex items-center text-2xl">
                     <a
@@ -278,14 +317,6 @@ export default function Landing() {
                       <BiLogoGithub />
                     </a>
                   </div> */}
-                </div>
-
-                <div className="">
-                  <div className="flex items-center gap-1 text-[0.6rem] font-thin">
-                    <span className="footer-text text-white">
-                      ALL IMAGES &#169; DUC DAM 2025
-                    </span>
-                  </div>
                 </div>
               </div>
             </>
@@ -311,6 +342,13 @@ export default function Landing() {
             </div>
 
             <div className="landing-mobileFooter relative bottom-0 z-100 flex w-[100%] items-center justify-between p-3">
+              <div className="">
+                <div className="flex items-center gap-1 text-[0.6rem] font-thin">
+                  <span className="footer-text text-black">
+                    ALL IMAGES &#169; DUC DAM 2025
+                  </span>
+                </div>
+              </div>
               <div className="flex gap-2 text-center text-black">
                 <div className="flex items-center text-2xl">
                   <a
@@ -326,19 +364,11 @@ export default function Landing() {
                   </a>
                 </div>
                 {/* <div className='landing-footer-facebook'>Facebook</div> */}
-                <div className="text-2xl">
+                {/* <div className="text-2xl">
                   <a href="https://github.com/ducdamchi" target="_blank">
                     <BiLogoGithub />
                   </a>
-                </div>
-              </div>
-
-              <div className="">
-                <div className="flex items-center gap-1 text-[0.6rem] font-thin">
-                  <span className="footer-text text-black">
-                    ALL IMAGES &#169; DUC DAM 2025
-                  </span>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>

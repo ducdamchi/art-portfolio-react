@@ -1,5 +1,8 @@
 import React from 'react'
 import ReactDom from 'react-dom'
+import { RiCloseFill } from 'react-icons/ri'
+import { BiLeftArrowAlt } from 'react-icons/bi'
+
 // import { useState, useRef, useEffect } from 'react'
 
 export default function ModalViewer({ film, openModalId, closeModal }) {
@@ -35,12 +38,13 @@ export default function ModalViewer({ film, openModalId, closeModal }) {
           className="modal-content flex items-center justify-center"
           style={MODAL_CONTENT}
         >
-          <div className="flex h-[500px] w-[888px] flex-col items-center justify-center">
+          <div className="flex h-[500px] w-[888px] flex-col items-start justify-center gap-2">
             <div
-              className="flex w-full justify-end text-3xl font-bold"
+              className="film-modal-close flex w-[20%] items-center justify-start p-2 font-bold"
               onClick={closeModal}
             >
-              ×
+              <BiLeftArrowAlt className="text-xl" />
+              <div className="text-base">BACK</div>
             </div>
 
             <div className="h-full w-full">

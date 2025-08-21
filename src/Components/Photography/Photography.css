@@ -162,6 +162,17 @@
 
 .modal-navbar-back {
   justify-self: start;
+  transition: 200ms ease-out;
+}
+
+.photo-landing-button-back {
+  transition: 200ms ease-out;
+}
+
+.modal-navbar-back:hover,
+.photo-landing-button-back:hover {
+  scale: 1.05;
+  text-decoration: underline;
 }
 
 /* SLIDES VIEW MODE CONTENT */
@@ -281,20 +292,22 @@
 /* GALLERY VIEW MODE CONTENT */
 .gallery-all {
   display: grid;
-  position: relative;
-  top: 3rem;
-  bottom: 10rem;
+  position: absolute;
+  top: -5%;
+  /* bottom: 10rem; */
   grid-template-columns: repeat(3, minmax(3.125rem, 37.5rem));
   justify-content: center;
   align-items: center;
   gap: 1.875rem;
+  padding-bottom: 10rem;
+  padding: 2rem;
 }
 
-@media (max-height: 75rem) {
+/* @media (max-height: 75rem) {
   .gallery-all {
     max-height: 56.25rem;
   }
-}
+} */
 
 .gallery-each {
   opacity: 1;

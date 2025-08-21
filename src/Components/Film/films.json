@@ -7,13 +7,84 @@
   "runtime": "42",
   "country": "India, Vietnam",
   "language": "French, English, Spanish, Malay",
-  "synopsis": "Due to COVID-19, students from a utopian high school were forced to return home. Heartbroken from a recent break up, Tom wanders around and confronts lovers who were also experiencing separation. The film is only available for offline screenings, please contact for more information.",
+  "synopsis": "Due to COVID-19, students from a utopian high school are forced to return home. Heartbroken from a recent break up, Tom wanders around and confronts lovers who were also experiencing separation. The film is only available for offline screenings, please contact for more information.",
   "recognition": "Official Selection, Cannes Indie Shorts",
   "screenings": "OKIA Outdoor Cinema (Hanoi, Vietnam), Fulbright University Vietnam (HCMC, Vietnam), Mahindra United World College (Pune, India), Olympia Cinema (Cannes, France)",
   "poster": "film/01-a-short-film-about-loving/poster.jpg",
   "thumbnail": "film/01-a-short-film-about-loving/thumb.jpg",
   "youtube": "https://www.youtube.com/embed/R3FXbEKPpLw?si=NKTsv8k6vMgUTnJh",
   "url": "a-short-film-about-loving-2020",
-  "logo": "film/01-a-short-film-about-loving/logo.png"
+  "logo": "film/01-a-short-film-about-loving/logo.png",
+  "pressGallery": {
+   "title": "A SHORT FILM ABOUT LOVING - PRESS GALLERY",
+   "captions": [
+    "Email from Indie Shorts Cannes.",
+    "Hanoi Grapevine News.",
+    "VietnamNet News.",
+    "Poster for Hanoi Screening.",
+    "Post from Fulbright University Vietnam's Art Lab.",
+    "With Cuong Le and Thanh Nguyen, Director and D.O.P. of 'The Glorious Pain' (2020), and Thao Luu, Project Coordinator of OKIA Hanoi Film Production & Creative Hub.",
+    "Audience at Hanoi screening (1).",
+    "Audience at Hanoi screening (2).",
+    "Q&A with Nguyen Hoang Diep, Director of 'Dap Canh Giua Khong Trung' (2014) and Founder of OKIA Hanoi Film Production & Creative Hub."
+   ],
+   "numImages": 9,
+   "imgList": [
+    {
+     "id": "1",
+     "src": "film/01-a-short-film-about-loving/press_gallery/1.png",
+     "index": 0,
+     "description": "Email from Indie Shorts Cannes."
+    },
+    {
+     "id": "2",
+     "src": "film/01-a-short-film-about-loving/press_gallery/2.png",
+     "index": 1,
+     "description": "Hanoi Grapevine News."
+    },
+    {
+     "id": "3",
+     "src": "film/01-a-short-film-about-loving/press_gallery/3.png",
+     "index": 2,
+     "description": "VietnamNet News."
+    },
+    {
+     "id": "4",
+     "src": "film/01-a-short-film-about-loving/press_gallery/4.jpg",
+     "index": 3,
+     "description": "Poster for Hanoi Screening."
+    },
+    {
+     "id": "5",
+     "src": "film/01-a-short-film-about-loving/press_gallery/5.png",
+     "index": 4,
+     "description": "Post from Fulbright University Vietnam's Art Lab."
+    },
+    {
+     "id": "6",
+     "src": "film/01-a-short-film-about-loving/press_gallery/6.jpg",
+     "index": 5,
+     "description": "With Cuong Le and Thanh Nguyen, Director and D.O.P. of 'The Glorious Pain' (2020), and Thao Luu, Project Coordinator of OKIA Hanoi Film Production & Creative Hub."
+    },
+    {
+     "id": "7",
+     "src": "film/01-a-short-film-about-loving/press_gallery/7.jpg",
+     "index": 6,
+     "description": "Audience at Hanoi screening (1)."
+    },
+    {
+     "id": "8",
+     "src": "film/01-a-short-film-about-loving/press_gallery/8.jpg",
+     "index": 7,
+     "description": "Audience at Hanoi screening (2)."
+    },
+    {
+     "id": "9",
+     "src": "film/01-a-short-film-about-loving/press_gallery/9.jpg",
+     "index": 8,
+     "description": "Q&A with Nguyen Hoang Diep, Director of 'Dap Canh Giua Khong Trung' (2014) and Founder of OKIA Hanoi Film Production & Creative Hub."
+    }
+   ]
+  }
  }
 ]

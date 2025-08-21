@@ -95,13 +95,13 @@ export default function Carousel_Items({
         )
         /* If bg dark enough, font can be white */
         if (brightness < 130) {
-          thumbnail_description.style.backgroundColor = `rgba(${domColor[0]}, ${domColor[1]}, ${domColor[2]}, 0.7)`
-          /* If bg a little light, reduce each rgb value by 25% */
+          thumbnail_description.style.backgroundColor = `rgba(${domColor[0]}, ${domColor[1]}, ${domColor[2]}, 0.85)`
+          /* If bg a little light, reduce each rgb value by 33% */
         } else if (130 <= brightness < 194) {
-          thumbnail_description.style.backgroundColor = `rgba(${domColor[0] * 0.75}, ${domColor[1] * 0.75}, ${domColor[2] * 0.75}, 0.7)`
-          /* If bg too light, reduce each rgb value by 50% */
+          thumbnail_description.style.backgroundColor = `rgba(${domColor[0] * 0.66}, ${domColor[1] * 0.66}, ${domColor[2] * 0.66}, 0.85)`
+          /* If bg too light, reduce each rgb value by 66% */
         } else {
-          thumbnail_description.style.backgroundColor = `rgba(${domColor[0] * 0.5}, ${domColor[1] * 0.5}, ${domColor[2] * 0.5}, 0.7)`
+          thumbnail_description.style.backgroundColor = `rgba(${domColor[0] * 0.33}, ${domColor[1] * 0.33}, ${domColor[2] * 0.33}, 0.85)`
         }
       } catch (err) {
         console.log(err)
