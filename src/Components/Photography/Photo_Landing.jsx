@@ -172,7 +172,7 @@ export default function Landing() {
     <div>
       <div>
         <div
-          className="photo-landing-whole relative top-0 left-0"
+          className="photo-landing-whole relative top-0 left-0 h-[100vh]"
           ref={landingRef}
         >
           <img
