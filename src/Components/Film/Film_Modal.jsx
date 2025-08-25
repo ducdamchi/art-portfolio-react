@@ -1,6 +1,5 @@
 import React from 'react'
 import ReactDom from 'react-dom'
-import { RiCloseFill } from 'react-icons/ri'
 import { BiLeftArrowAlt } from 'react-icons/bi'
 
 // import { useState, useRef, useEffect } from 'react'

@@ -1,19 +1,20 @@
 import React from 'react'
 import { useState, useRef, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
-import { Link } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 import '../../App.css'
 import './Film.css'
 import Modal from './Film_Modal'
 import PressGalleryModal from './Film_Modal_Press'
 import filmsData from './films.json'
-import { BiLeftArrowAlt, BiLogoGmail } from 'react-icons/bi'
-import { BiLogoInstagramAlt } from 'react-icons/bi'
-import { BiLogoGithub } from 'react-icons/bi'
-import { BiArrowBack } from 'react-icons/bi'
-import { BiPlay } from 'react-icons/bi'
-import { BiTimeFive } from 'react-icons/bi'
-import { BiNews } from 'react-icons/bi'
+import {
+  BiLeftArrowAlt,
+  BiLogoGmail,
+  BiLogoInstagramAlt,
+  BiPlay,
+  BiTimeFive,
+  BiNews,
+  BiLogoGithub,
+} from 'react-icons/bi'
 
 export default function Landing() {
   const [openModalId, setOpenModalId] = useState(null)
@@ -83,13 +84,14 @@ export default function Landing() {
 
           <div className="film-landing-viewButton-wrapper flex justify-center">
             <div
-              className="film-landing-viewButton md:5xl text-4xl"
+              className="film-landing-viewButton md:5xl flex items-center gap-1 p-[1rem] text-4xl font-bold"
               onClick={() => {
                 setOpenModalId(matchedFilm.id)
                 setModalOpened(true)
               }}
             >
               <BiPlay className="film-landing-viewButton-icon" />
+              {/* <div className="text-lg">TRAILER</div> */}
             </div>
           </div>
 

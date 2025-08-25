@@ -1,10 +1,8 @@
-import React from 'react'
 import { useState, useRef, useEffect } from 'react'
 import '../../App.css'
 import './Photography.css'
 import Carousel_Items from './Photo_Items'
-import { BiChevronLeft } from 'react-icons/bi'
-import { BiChevronRight } from 'react-icons/bi'
+import { BiChevronLeft, BiChevronRight } from 'react-icons/bi'
 
 export default function Carousel({
   albumsData,

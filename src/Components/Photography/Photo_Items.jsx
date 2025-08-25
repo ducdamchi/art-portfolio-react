@@ -1,10 +1,7 @@
-import React from 'react'
-import { useState, useRef, useEffect, useLayoutEffect } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import '../../App.css'
 import './Photography.css'
-import Modal from './Photo_Modal'
-import useResizeObserver from '@react-hook/resize-observer'
 
 export default function Carousel_Items({
   albumsData,

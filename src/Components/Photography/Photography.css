@@ -279,9 +279,7 @@
   width: 60%;
   min-width: 40rem;
   max-width: 80rem;
-  height: 75%;
-  min-height: 30rem;
-  max-height: 60rem;
+  height: auto;
 }
 
 .photo-landing-info {

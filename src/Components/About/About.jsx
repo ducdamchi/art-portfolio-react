@@ -1,5 +1,4 @@
 import { useState, useRef, useEffect } from 'react'
-
 import NavSection from '../NavSection'
 import Footer from '../Footer'
 import '../../App.css'
@@ -19,9 +18,9 @@ export default function About() {
         <div className="relative top-20 flex h-[90vh] w-[35%] max-w-[800px] min-w-[360px] flex-col gap-2 p-2">
           <img src="about/about.jpg" alt="" className="border-5" />
           <div className="p-2">
-            Duc Dam is a Vietnamese filmmaker, photographer, and web designer
-            based in Hanoi and Philadelphia. For all inquries, please contact
-            via{' '}
+            Duc Dam is a Vietnamese filmmaker, photographer, and web developer
+            born in Hanoi and based in Philadelphia. For all inquries, please
+            contact via{' '}
             <a
               href={`mailto:ducdamchi@gmail.com?
               &subject=Just visited your website`}
@@ -37,8 +36,8 @@ export default function About() {
             </div>
             <div className="ml-5">
               Swarthmore College | BA - Computer Science and Chinese <br />
-              Mahindra United World College in India | IB - Math, Film, and
-              Philosophy
+              Mahindra United World College in India | IB - Math, Philosophy,
+              Film Studies
             </div>
           </div>
           {/* <div className="p-2">

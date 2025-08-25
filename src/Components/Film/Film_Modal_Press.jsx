@@ -25,12 +25,6 @@ export default function Modal({
 }) {
   /*************** CSS **************/
   const MODAL_BG = {
-    // zIndex: '20',
-    // position: 'absolute',
-    // top: '0%',
-    // width: '100vw',
-    // height: '100vh',
-    // background: 'rgb(250, 250, 250)',
     transition: 'background 400ms ease-in-out',
   }
 
@@ -40,17 +34,6 @@ export default function Modal({
 
   const MODAL_DESC_REF = {
     transition: 'all 400ms ease-in-out',
-  }
-
-  const MODAL_CONTENT = {
-    // zIndex: '130',
-    // position: 'absolute',
-    // textAlign: 'center',
-    // width: '100%',
-    // height: '70%',
-    // top: '12.5%', // = (100-height)/2
-    // left: '0%', // = (100-width)/2
-    // color: 'white',
   }
 
   /*************** STATES AND VARS **************/
@@ -182,7 +165,7 @@ export default function Modal({
     }
   }, [screenHeight, screenWidth, isMobileMode])
 
-  /* Handle transition between background colors */
+  /* DON'T DELETE --- Handle transition between background colors */
   // useEffect(() => {
   //   if (bgRef.current) {
   //     if (bgColor === 'black') {
@@ -252,7 +235,7 @@ export default function Modal({
                   )}
                 </button>
 
-                {/* Button for switching modal background colors (black, grey, white), shared*/}
+                {/* DON'T DELETE --- Button for switching modal background colors (black, grey, white), shared*/}
                 {/* <button
                   className="text-md border-2 border-orange-300 sm:text-lg md:text-xl lg:text-2xl xl:text-3xl"
                   onClick={toggleBackground}

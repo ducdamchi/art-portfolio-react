@@ -1,24 +1,23 @@
-import React from 'react'
 import { useState, useRef, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
-import { Link } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 import '../../App.css'
 import './Photography.css'
 import Modal from './Photo_Modal'
-import Footer from '../Footer'
 import albumsData from './albums.json'
-import { HiArrowLeft } from 'react-icons/hi2'
-import { BiLogoGmail } from 'react-icons/bi'
-import { BiLogoInstagramAlt } from 'react-icons/bi'
-import { BiLogoGithub } from 'react-icons/bi'
-import { BiCopyright } from 'react-icons/bi'
-import { BiFolderOpen } from 'react-icons/bi'
-import { BiArrowBack } from 'react-icons/bi'
-import { BiChevronLeft } from 'react-icons/bi'
-import { BiChevronRight } from 'react-icons/bi'
-import { BiLeftArrowAlt, BiRightArrowAlt } from 'react-icons/bi'
-import { BiSolidTimeFive } from 'react-icons/bi'
-import { BiTimeFive } from 'react-icons/bi'
+
+import {
+  BiLogoGmail,
+  BiLogoInstagramAlt,
+  BiFolderOpen,
+  BiLeftArrowAlt,
+  BiTimeFive,
+  BiRightArrowAlt,
+  BiLogoGithub,
+  BiCopyright,
+  BiArrowBack,
+  BiChevronLeft,
+  BiChevronRight,
+} from 'react-icons/bi'
 
 export default function Landing() {
   const [openModalId, setOpenModalId] = useState(null)
@@ -26,7 +25,8 @@ export default function Landing() {
   const [screenHeight, setScreenHeight] = useState(window.innerHeight)
   const [isMobileMode, setIsMobileMode] = useState(false)
   const [modalOpened, setModalOpened] = useState(false)
-  // const [domColor, setDomColor] = useState(null)
+  const [boxHeight, setBoxHeight] = useState(0)
+  const landingRef = useRef(null)
   const imgRef = useRef(null)
   const infoBoxRef = useRef(null)
   const headerRef = useRef(null)
@@ -35,15 +35,21 @@ export default function Landing() {
 
   const matchedAlbum = albumsData.find((album) => album.url === photoURL)
 
-  // const INFO_BOX_STYLE = {
-  //   borderColor: `rgb(${domColor[0]}, ${domColor[1]}, ${domColor[2]})`,
-  // }
+  const measureBoxHeight = () => {
+    if (infoBoxRef.current) {
+      const rect = infoBoxRef.current.getBoundingClientRect()
+      setBoxHeight(rect.height) //get height in pixels
+      console.log(`Info box height: ${rect.height}`)
+    }
+  }
 
-  /* Dynamically obtain window size */
+  /* Dynamically obtain window size and height of infoBox*/
   useEffect(() => {
+    measureBoxHeight()
     const handleResize = () => {
       setScreenWidth(window.innerWidth)
       setScreenHeight(window.innerHeight)
+      measureBoxHeight()
     }
     handleResize()
     window.addEventListener('resize', handleResize)
@@ -60,60 +66,7 @@ export default function Landing() {
     // console.log(`Mobile mode: ${isMobileMode}`)
   }, [screenWidth])
 
-  // /* Pick color for info-box border from dominant color of background */
-  // useEffect(() => {
-  //   if (matchedAlbum) {
-  //     const img = document.getElementById(`landing-bg-${matchedAlbum.id}`)
-  //     const infoBox = document.getElementById(
-  //       `landing-info-all-${matchedAlbum.id}`,
-  //     )
-  //     // console.log(infoBox)
-  //     const colorThief = new ColorThief()
-
-  //     if (!isMobileMode) {
-  //       try {
-  //         setDomColor(colorThief.getColor(img))
-  //         infoBox.style.borderColor = `rgb(${domColor[0]}, ${domColor[1]}, ${domColor[2]})`
-  //       } catch (err) {
-  //         console.log(err)
-  //       }
-  //     }
-  //   }
-  // }, [])
-
-  // useEffect(() => {
-  //   if (!matchedAlbum || isMobileMode) return
-
-  //   const img = document.getElementById(`landing-bg-${matchedAlbum.id}`)
-  //   const infoBox = document.getElementById(
-  //     `landing-info-all-${matchedAlbum.id}`,
-  //   )
-  //   const colorThief = new ColorThief()
-
-  //   const applyColor = () => {
-  //     try {
-  //       const color = colorThief.getColor(img)
-  //       setDomColor(color)
-  //       if (infoBox) {
-  //         infoBox.style.borderColor = `rgb(${color[0]}, ${color[1]}, ${color[2]})`
-  //       }
-  //     } catch (err) {
-  //       console.warn('Failed to extract color', err)
-  //     }
-  //   }
-
-  //   if (img) {
-  //     if (img.complete && img.naturalHeight !== 0) {
-  //       // Image already loaded and rendered
-  //       applyColor()
-  //     } else {
-  //       // Wait for it to load (important for back button case too)
-  //       img.addEventListener('load', applyColor)
-  //       return () => img.removeEventListener('load', applyColor)
-  //     }
-  //   }
-  // }, [matchedAlbum?.id, isMobileMode])
-
+  /* Pick color for info-box header from dominant color of background */
   useEffect(() => {
     if (!matchedAlbum || isMobileMode || modalOpened) return
 
@@ -165,6 +118,52 @@ export default function Landing() {
     }
   }, [matchedAlbum?.id, isMobileMode, modalOpened])
 
+  /* Dynamically adjust the height of the landing page based on the height of the info box 
+  boxHeight: height of infoBox
+  screenHeight: height of screen
+  landingHeight: height of landing page*/
+  useEffect(() => {
+    // If not in mobile mode
+    if (
+      !isMobileMode &&
+      landingRef.current &&
+      infoBoxRef.current &&
+      boxHeight
+    ) {
+      const h = boxHeight * 1.333
+      // Calculate desired distance from top of infoBox so that it is always centered on page.
+      // If box height is smaller than screen height
+      if (boxHeight < screenHeight) {
+        // calculate size of boxHeight compared to screenHeight
+        const s = 100 - (boxHeight / screenHeight) * 100
+        console.log(s)
+
+        // if boxHeight is >75% of screenHeight, use boxHeight * 1.3 as the value for landingHeight.
+        if (s < 25) {
+          landingRef.current.style.height = `${h}px`
+          infoBoxRef.current.style.top = `12.5%`
+          console.log(`case 1`)
+          // if not, use screenHeight as the value for landingHeight. then center infoBox
+        } else {
+          landingRef.current.style.height = `${screenHeight}px`
+          infoBoxRef.current.style.top = `${s / 2}%`
+          console.log(`case 2`)
+        }
+
+        // If boxHeight is bigger than screenHeight
+      } else {
+        landingRef.current.style.height = `${h}px`
+        infoBoxRef.current.style.top = `12.5%`
+        console.log(`case 3`)
+      }
+
+      // Mobile mode
+    } else {
+      landingRef.current.style.height = `100vh`
+      // infoBoxRef.current.style.top = `12.5%`
+    }
+  }, [boxHeight, screenHeight, screenWidth, modalOpened, isMobileMode])
+
   if (!matchedAlbum) {
     return <div>Page not found</div>
   }
@@ -172,7 +171,10 @@ export default function Landing() {
   return (
     <div>
       <div>
-        <div className="photo-landing-whole relative top-0 left-0 h-screen w-screen">
+        <div
+          className="photo-landing-whole relative top-0 left-0"
+          ref={landingRef}
+        >
           <img
             ref={imgRef}
             className="photo-landing-background"
@@ -228,6 +230,7 @@ export default function Landing() {
             </>
           )}
 
+          {/* DESKTOP MODE */}
           {!isMobileMode && !modalOpened && (
             <>
               <div className="photo-landing-info-wrapper flex justify-center">
@@ -243,7 +246,7 @@ export default function Landing() {
                     <div className="photo-landing-button-back z-2 flex w-[15%] items-center justify-start text-white">
                       <Link
                         to={`/photography`}
-                        onClick={() => console.log('clicked on link')}
+                        // onClick={() => console.log('clicked on link')}
                         className="z-10 flex items-center justify-center"
                       >
                         <BiLeftArrowAlt className="text-xl" />
@@ -263,7 +266,7 @@ export default function Landing() {
                       {`${matchedAlbum.viewTime} mins`}
                     </div>
 
-                    <div className="photo-landing-info-description">
+                    <div className="photo-landing-info-description mb-20">
                       {matchedAlbum.description.map((paragraph, index) => (
                         <p key={index} className="mb-2">
                           {paragraph}
@@ -271,7 +274,7 @@ export default function Landing() {
                       ))}
                     </div>
                   </div>
-                  <div className="photo-landing-buttons absolute bottom-0 flex w-full justify-center p-6">
+                  <div className="photo-landing-buttons absolute bottom-0 mb-5 flex w-full justify-center p-6">
                     <div
                       className="photo-landing-button-view z-10 flex items-center justify-center gap-1 border-1 p-2"
                       onClick={() => {
@@ -299,7 +302,7 @@ export default function Landing() {
                   <div className="flex items-center text-2xl">
                     <a
                       href={`mailto:ducdamchi@gmail.com?
-                      &subject=Just visited your website`}
+                          &subject=Just visited your website`}
                     >
                       <BiLogoGmail />
                     </a>
@@ -313,10 +316,10 @@ export default function Landing() {
                     </a>
                   </div>
                   {/* <div className="text-2xl">
-                    <a href="https://github.com/ducdamchi" target="_blank">
-                      <BiLogoGithub />
-                    </a>
-                  </div> */}
+                        <a href="https://github.com/ducdamchi" target="_blank">
+                          <BiLogoGithub />
+                        </a>
+                      </div> */}
                 </div>
               </div>
             </>

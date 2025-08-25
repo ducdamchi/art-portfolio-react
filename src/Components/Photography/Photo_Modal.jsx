@@ -1,19 +1,10 @@
-import React from 'react'
 import ReactDom from 'react-dom'
 import { useState, useRef, useEffect } from 'react'
 import '../../App.css'
 import './Photography.css'
-import { PiGridNineBold } from 'react-icons/pi'
-import { TbSlideshow } from 'react-icons/tb'
-import { TbBackground } from 'react-icons/tb'
-import { ImArrowLeft } from 'react-icons/im'
-import { BiArrowBack } from 'react-icons/bi'
 import { CgLayoutGridSmall } from 'react-icons/cg'
 import { TfiLayoutSlider } from 'react-icons/tfi'
-import { PiSelectionBackgroundThin } from 'react-icons/pi'
-import { BiLeftArrowAlt } from 'react-icons/bi'
-import { BiChevronLeft } from 'react-icons/bi'
-import { BiChevronRight } from 'react-icons/bi'
+import { BiChevronRight, BiLeftArrowAlt, BiChevronLeft } from 'react-icons/bi'
 
 export default function Modal({
   album,
