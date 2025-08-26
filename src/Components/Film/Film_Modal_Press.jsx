@@ -254,10 +254,7 @@ export default function Modal({
           </div>
 
           {/* IMAGE DISPLAY WINDOW */}
-          <div
-            className="modal-content relative h-full w-full"
-            style={MODAL_CONTENT}
-          >
+          <div className="modal-content relative h-full w-full">
             {/* MODAL - VIEWING WINDOW */}
             <div
               ref={modalContentRef}
