@@ -840,5 +840,120 @@
     "description": "Apple, Pomelo, Orange, Canteloupe."
    }
   ]
+ },
+ {
+  "id": 6,
+  "title": "IMPRESSIONS: KAWAGUCHIKO",
+  "year": "2019",
+  "description": [
+   "As the name may suggest, the “Impressions” series consist of projects conducted in culturally and geographically distinctive regions, often during a short amount of time. They are meant to provoke more than inform, the way new sights in a foreign country would catch a traveller’s attention. The images in these series, if they include people at all, frame them from a very safe distance—often reflecting my reluctance to intrude as an alien observer. Instinctively, this also meant relying a lot on sceneries that are already there, whether natural or manmade, to develop my visual understanding of a place.",
+   "Minutes before my bus to Kawaguchiko departed, I found myself extremely lost in the middle of Shibuya junction. While frantically running around, I thought: “Unlike in Vietnam, this bus will probably leave very on time.” A passerby stopped to give me very detailed instructions, which I did not understand. Quickly realizing the situation, he told his friend to wait, and started running in the opposite direction, signaling me to follow. Until this day, I still think fondly of that encounter, it being the only reason why I was able to make it to Kawaguchiko and take the photos that I did.",
+   "Kawaguchiko is one of the famous Fuji Five Lakes, located in a scenic town that offers many natural onsen, and a stunning view of Mount Fuji. The cloudy weather concealed the iconic volcano for many days—only clearing up a little the very morning that I had to leave."
+  ],
+  "captions": [
+   "Sensō Temple",
+   "Tokyo Skytree.",
+   "House front.",
+   "Road.",
+   "Man fishing at dusk",
+   "Park.",
+   "Wooden house.",
+   "Lake Kawaguchi.",
+   "Park.",
+   "Man fishing at dawn.",
+   "View of Mount Fuji.",
+   "Oishi Park.",
+   "Rokkaku Temple."
+  ],
+  "numImages": 13,
+  "viewTime": 8,
+  "isHighlight": true,
+  "thumbnail": {
+   "id": "6.0",
+   "src": "photography/Highlights/06-impressions-kawaguchiko/thumb.jpg",
+   "index": null,
+   "description": ""
+  },
+  "url": "impressions-kawaguchiko",
+  "imgList": [
+   {
+    "id": "6.1",
+    "src": "photography/Highlights/06-impressions-kawaguchiko/01.jpg",
+    "index": 0,
+    "description": "Sensō Temple"
+   },
+   {
+    "id": "6.2",
+    "src": "photography/Highlights/06-impressions-kawaguchiko/02.jpg",
+    "index": 1,
+    "description": "Tokyo Skytree."
+   },
+   {
+    "id": "6.3",
+    "src": "photography/Highlights/06-impressions-kawaguchiko/03.jpg",
+    "index": 2,
+    "description": "House front."
+   },
+   {
+    "id": "6.4",
+    "src": "photography/Highlights/06-impressions-kawaguchiko/04.jpg",
+    "index": 3,
+    "description": "Road."
+   },
+   {
+    "id": "6.5",
+    "src": "photography/Highlights/06-impressions-kawaguchiko/05.jpg",
+    "index": 4,
+    "description": "Man fishing at dusk"
+   },
+   {
+    "id": "6.6",
+    "src": "photography/Highlights/06-impressions-kawaguchiko/06.jpg",
+    "index": 5,
+    "description": "Park."
+   },
+   {
+    "id": "6.7",
+    "src": "photography/Highlights/06-impressions-kawaguchiko/07.jpg",
+    "index": 6,
+    "description": "Wooden house."
+   },
+   {
+    "id": "6.8",
+    "src": "photography/Highlights/06-impressions-kawaguchiko/08.jpg",
+    "index": 7,
+    "description": "Lake Kawaguchi."
+   },
+   {
+    "id": "6.9",
+    "src": "photography/Highlights/06-impressions-kawaguchiko/09.jpg",
+    "index": 8,
+    "description": "Park."
+   },
+   {
+    "id": "6.10",
+    "src": "photography/Highlights/06-impressions-kawaguchiko/10.jpg",
+    "index": 9,
+    "description": "Man fishing at dawn."
+   },
+   {
+    "id": "6.11",
+    "src": "photography/Highlights/06-impressions-kawaguchiko/11.jpg",
+    "index": 10,
+    "description": "View of Mount Fuji."
+   },
+   {
+    "id": "6.12",
+    "src": "photography/Highlights/06-impressions-kawaguchiko/12.jpg",
+    "index": 11,
+    "description": "Oishi Park."
+   },
+   {
+    "id": "6.13",
+    "src": "photography/Highlights/06-impressions-kawaguchiko/13.jpg",
+    "index": 12,
+    "description": "Rokkaku Temple."
+   }
+  ]
  }
 ]
