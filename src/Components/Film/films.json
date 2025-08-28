@@ -21,68 +21,82 @@
     "Email from Indie Shorts Cannes.",
     "Hanoi Grapevine News.",
     "VietnamNet News.",
+    "Tien Phong News.",
     "Poster for Hanoi Screening.",
     "Post from Fulbright University Vietnam's Art Lab.",
     "With Cuong Le and Thanh Nguyen, Director and D.O.P. of 'The Glorious Pain' (2020), and Thao Luu, Project Coordinator of OKIA Hanoi Film Production & Creative Hub.",
     "Audience at Hanoi screening (1).",
     "Audience at Hanoi screening (2).",
-    "Q&A with Nguyen Hoang Diep, Director of 'Dap Canh Giua Khong Trung' (2014) and Founder of OKIA Hanoi Film Production & Creative Hub."
+    "Q&A with Nguyen Hoang Diep, Director of 'Đập Cánh Giữa Không Trung' (2014) and Founder of OKIA Hanoi Film Production & Creative Hub.",
+    "Screening at Fulbright University."
    ],
-   "numImages": 9,
+   "numImages": 11,
    "imgList": [
     {
      "id": "1",
-     "src": "film/01-a-short-film-about-loving/press_gallery/1.png",
+     "src": "film/01-a-short-film-about-loving/press_gallery/01.png",
      "index": 0,
      "description": "Email from Indie Shorts Cannes."
     },
     {
      "id": "2",
-     "src": "film/01-a-short-film-about-loving/press_gallery/2.png",
+     "src": "film/01-a-short-film-about-loving/press_gallery/02.png",
      "index": 1,
      "description": "Hanoi Grapevine News."
     },
     {
      "id": "3",
-     "src": "film/01-a-short-film-about-loving/press_gallery/3.png",
+     "src": "film/01-a-short-film-about-loving/press_gallery/03.png",
      "index": 2,
      "description": "VietnamNet News."
     },
     {
      "id": "4",
-     "src": "film/01-a-short-film-about-loving/press_gallery/4.jpg",
+     "src": "film/01-a-short-film-about-loving/press_gallery/04.png",
      "index": 3,
-     "description": "Poster for Hanoi Screening."
+     "description": "Tien Phong News."
     },
     {
      "id": "5",
-     "src": "film/01-a-short-film-about-loving/press_gallery/5.png",
+     "src": "film/01-a-short-film-about-loving/press_gallery/05.jpg",
      "index": 4,
-     "description": "Post from Fulbright University Vietnam's Art Lab."
+     "description": "Poster for Hanoi Screening."
     },
     {
      "id": "6",
-     "src": "film/01-a-short-film-about-loving/press_gallery/6.jpg",
+     "src": "film/01-a-short-film-about-loving/press_gallery/06.png",
      "index": 5,
-     "description": "With Cuong Le and Thanh Nguyen, Director and D.O.P. of 'The Glorious Pain' (2020), and Thao Luu, Project Coordinator of OKIA Hanoi Film Production & Creative Hub."
+     "description": "Post from Fulbright University Vietnam's Art Lab."
     },
     {
      "id": "7",
-     "src": "film/01-a-short-film-about-loving/press_gallery/7.jpg",
+     "src": "film/01-a-short-film-about-loving/press_gallery/07.jpg",
      "index": 6,
-     "description": "Audience at Hanoi screening (1)."
+     "description": "With Cuong Le and Thanh Nguyen, Director and D.O.P. of 'The Glorious Pain' (2020), and Thao Luu, Project Coordinator of OKIA Hanoi Film Production & Creative Hub."
     },
     {
      "id": "8",
-     "src": "film/01-a-short-film-about-loving/press_gallery/8.jpg",
+     "src": "film/01-a-short-film-about-loving/press_gallery/08.jpg",
      "index": 7,
-     "description": "Audience at Hanoi screening (2)."
+     "description": "Audience at Hanoi screening (1)."
     },
     {
      "id": "9",
-     "src": "film/01-a-short-film-about-loving/press_gallery/9.jpg",
+     "src": "film/01-a-short-film-about-loving/press_gallery/09.jpg",
      "index": 8,
-     "description": "Q&A with Nguyen Hoang Diep, Director of 'Dap Canh Giua Khong Trung' (2014) and Founder of OKIA Hanoi Film Production & Creative Hub."
+     "description": "Audience at Hanoi screening (2)."
+    },
+    {
+     "id": "10",
+     "src": "film/01-a-short-film-about-loving/press_gallery/10.jpg",
+     "index": 9,
+     "description": "Q&A with Nguyen Hoang Diep, Director of 'Đập Cánh Giữa Không Trung' (2014) and Founder of OKIA Hanoi Film Production & Creative Hub."
+    },
+    {
+     "id": "11",
+     "src": "film/01-a-short-film-about-loving/press_gallery/11.jpg",
+     "index": 10,
+     "description": "Screening at Fulbright University."
     }
    ]
   }

@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react'
-import { useParams, Link } from 'react-router-dom'
+import { useParams, useLocation, Link } from 'react-router-dom'
 import '../../App.css'
 import './Photography.css'
 import Modal from './Photo_Modal'
@@ -30,16 +30,21 @@ export default function Landing() {
   const imgRef = useRef(null)
   const infoBoxRef = useRef(null)
   const headerRef = useRef(null)
-
+  const location = useLocation()
   const { photoURL } = useParams()
-
   const matchedAlbum = albumsData.find((album) => album.url === photoURL)
 
+  /* Receive data about carouselIndex and slidesOffset from Carousel page. Then send this data back to Carousel page, so that when user return from Landing page, they're at the part of the carousel that were being viewed (instead of scrolling from the start) */
+  const { currentIndex, currentOffset } = location.state || {}
+  // console.log(`Landing's current index: ${currentIndex}`)
+  // console.log(`Landing's current offset: ${currentOffset}`)
+
+  /* Measure the height of infoBox in pixels */
   const measureBoxHeight = () => {
     if (infoBoxRef.current) {
       const rect = infoBoxRef.current.getBoundingClientRect()
       setBoxHeight(rect.height) //get height in pixels
-      console.log(`Info box height: ${rect.height}`)
+      // console.log(`Info box height: ${rect.height}`)
     }
   }
 
@@ -136,25 +141,25 @@ export default function Landing() {
       if (boxHeight < screenHeight) {
         // calculate size of boxHeight compared to screenHeight
         const s = 100 - (boxHeight / screenHeight) * 100
-        console.log(s)
+        // console.log(s)
 
         // if boxHeight is >75% of screenHeight, use boxHeight * 1.3 as the value for landingHeight.
         if (s < 25) {
           landingRef.current.style.height = `${h}px`
           infoBoxRef.current.style.top = `12.5%`
-          console.log(`case 1`)
+          // console.log(`case 1`)
           // if not, use screenHeight as the value for landingHeight. then center infoBox
         } else {
           landingRef.current.style.height = `${screenHeight}px`
           infoBoxRef.current.style.top = `${s / 2}%`
-          console.log(`case 2`)
+          // console.log(`case 2`)
         }
 
         // If boxHeight is bigger than screenHeight
       } else {
         landingRef.current.style.height = `${h}px`
         infoBoxRef.current.style.top = `12.5%`
-        console.log(`case 3`)
+        // console.log(`case 3`)
       }
 
       // Mobile mode
@@ -192,6 +197,10 @@ export default function Landing() {
                   <div className="photo-landing-backArrow z-10">
                     <Link
                       to={`/photography`}
+                      state={{
+                        returnToIndex: currentIndex,
+                        returnToOffset: currentOffset,
+                      }}
                       className="flex items-center gap-1 text-base"
                     >
                       <BiLeftArrowAlt className="text-xl" />
@@ -246,7 +255,10 @@ export default function Landing() {
                     <div className="photo-landing-button-back z-2 flex w-[15%] items-center justify-start text-white">
                       <Link
                         to={`/photography`}
-                        // onClick={() => console.log('clicked on link')}
+                        state={{
+                          returnToIndex: currentIndex,
+                          returnToOffset: currentOffset,
+                        }}
                         className="z-10 flex items-center justify-center"
                       >
                         <BiLeftArrowAlt className="text-xl" />

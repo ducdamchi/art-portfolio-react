@@ -1,13 +1,15 @@
 import React from 'react'
 import { useState, useRef, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import '../../App.css'
 import './Photography.css'
 
 export default function Carousel_Items({
   albumsData,
   carouselIndex,
+  setCarouselIndex,
   slidesOffset,
+  setSlidesOffset,
   isEdgeTransition,
   albumsPerSlide,
   carouselBtnLeft,
@@ -25,6 +27,7 @@ export default function Carousel_Items({
   const [titleSize, setTitleSize] = useState([])
   const thumbnails = useRef(null)
   const titleRef = useRef(null)
+  const location = useLocation()
 
   /*************** CSS **************/
   const THUMBNAIL_FLEX_CONTAINER = {
@@ -59,14 +62,6 @@ export default function Carousel_Items({
       carouselBtnRight.current.style.opacity = '1'
     }
   }
-
-  // function handleClickZoom(albumId) {
-  //   console.log('clicked on img')
-  //   const targetImg = document.getElementById(`thumbnail-img-${albumId}`)
-  //   targetImg.style.zIndex = '50'
-  //   targetImg.style.display = 'static'
-  //   targetImg.style.scale = '5'
-  // }
 
   /* Pick background color for thumbnail description that matches the image dominant color */
   useEffect(() => {
@@ -109,6 +104,12 @@ export default function Carousel_Items({
     }
   }, [hoverId])
 
+  // useEffect(() => {
+  //   if (thumbnails.current) {
+  //     thumbnails.current.style.transform = `translateX(calc((${carouselIndex} + ${slidesOffset}) * -100%))`
+  //   }
+  // }, [carouselIndex, slidesOffset])
+
   /* Use ResizeObserver to observe size of thumbnail, and adjust size of title accordingly.  */
   useEffect(() => {
     const target = titleRef.current
@@ -127,6 +128,24 @@ export default function Carousel_Items({
 
     return () => resizeObserver.disconnect()
   }, [])
+
+  /* Receive data about carouselIndex and slidesOffset from Landing page, so that when user return from Landing page, they're at the part of the carousel that were being viewed (instead of scrolling from the start) */
+  useEffect(() => {
+    const { returnToIndex, returnToOffset } = location.state || {}
+
+    if (returnToIndex !== undefined && thumbnails.current) {
+      thumbnails.current.style.transition = 'none'
+      // console.log('Restoring carousel to index:', returnToIndex)
+      // console.log('Restoring carousel to offset:', returnToOffset)
+      setCarouselIndex(returnToIndex)
+      setSlidesOffset(returnToOffset)
+      setTimeout(() => {
+        thumbnails.current.style.transition = isEdgeTransition
+          ? 'none'
+          : 'transform 750ms ease-in-out'
+      }, 100)
+    }
+  }, [location.state])
 
   // const size = useSize(box)
   return (
@@ -188,6 +207,10 @@ export default function Carousel_Items({
               <div className="thumbnail-info-container relative">
                 <Link
                   to={`../photography/${album.url}`}
+                  state={{
+                    currentIndex: carouselIndex,
+                    currentOffset: slidesOffset,
+                  }}
                   className="absolute top-0 left-0 z-4 h-full w-full"
                 />
                 <div>

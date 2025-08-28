@@ -1,4 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
+import { Link, useLocation } from 'react-router-dom'
+
 import '../../App.css'
 import './Photography.css'
 import Carousel_Items from './Photo_Items'
@@ -26,8 +28,8 @@ export default function Carousel({
   }
 
   /*************** STATES AND VARS **************/
-  const [carouselIndex, setCarouselIndex] =
-    useState(1) /* slide index we're on */
+  const [carouselIndex, setCarouselIndex] = useState(1)
+  /* slide index we're on */
   const [isEdgeTransition, setEdgeTransition] =
     useState(false) /* handling Edge case transition */
   const [rightDisabled, setRightDisabled] =
@@ -166,8 +168,36 @@ export default function Carousel({
   }, [isEdgeTransition, carouselIndex])
 
   // useEffect(() => {
-  //   console.log("slides offset:", slidesOffset);
-  // }, [slidesOffset])
+  //   console.log('******* RESIZE DETECTED *******')
+  //   console.log('carouselIndex:', carouselIndex)
+  //   console.log('numSlidesIndex:', numSlidesIndex)
+  //   console.log('albumsPerSlide:', albumsPerSlide)
+  //   console.log('oddAlbums:', oddAlbums)
+  //   console.log('slidesOffset:', slidesOffset)
+  //   // const oldSlidesOffset = slidesOffset
+  //   /* If upon resize (often from smaller to bigger screen), the stored carousel index exceed the number of real slides (all slides - 2), then set carouselIndex to the highest possible real slide index. */
+  //   if (carouselIndex > numSlidesIndex - 1) {
+  //     //Highest possible real slide index will be total number of slides minus 1
+  //     setCarouselIndex(numSlidesIndex - 1)
+  //     // if (oddAlbums !== 0) {
+  //     //   setSlidesOffset(0)
+  //     // }
+  //   }
+  //   /* If caught resizing on last page of carousel with odd albums, set slidesOffset to 0 to prevent any glitch in carousel*/
+  //   // if (carouselIndex === numSlidesIndex - 1 && oddAlbums !== 0) {
+  //   //   setSlidesOffset(0)
+  //   // }
+  //   // if (slidesOffset !== 0) {
+  //   //   setSlidesOffset(0)
+  //   // }
+  //   // if (carouselIndex > numSlidesIndex - 2) {
+  //   //   console.log('Carousel Index exceeded num slides Index')
+  //   //   setCarouselIndex(1)
+  //   // }
+  //   // return () => {
+  //   //   setSlidesOffset(oddAlbums / albumsPerSlide)
+  //   // }
+  // }, [numSlidesIndex])
 
   /*************** HTML **************/
   return (
@@ -189,7 +219,9 @@ export default function Carousel({
       <Carousel_Items
         albumsData={albumsData}
         carouselIndex={carouselIndex}
+        setCarouselIndex={setCarouselIndex}
         slidesOffset={slidesOffset}
+        setSlidesOffset={setSlidesOffset}
         isEdgeTransition={isEdgeTransition}
         albumsPerSlide={albumsPerSlide}
         carouselBtnLeft={carouselBtnLeft}

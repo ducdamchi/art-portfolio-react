@@ -4,6 +4,7 @@ import Carousel from './Photo_Carousel'
 import Footer from '../Footer'
 import albumsData from './albums.json'
 import '../../App.css'
+import { Link, useLocation } from 'react-router-dom'
 
 export default function Photography() {
   const numAlbums = albumsData.filter(
@@ -13,6 +14,9 @@ export default function Photography() {
   const [numSlidesIndex, setNumSlidesIndex] = useState(null)
   const [albumsPerSlide, setAlbumsPerSlide] = useState(null) //keep track of this in .root in App.css as well
   const [oddAlbums, setOddAlbums] = useState(null) // number of odd slides (numAlbums not always divisible by albumsPerSlide)
+
+  // const location = useLocation()
+  // console.log(location)
 
   /* Dynamically obtain window size to resize carousel accordingly */
   useEffect(() => {
