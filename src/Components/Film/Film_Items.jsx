@@ -282,6 +282,8 @@ export default function Carousel_Items({
                       autoPlay
                       loop
                       muted
+                      playsInline
+                      disablePictureInPicture
                       className="relative top-[-100%] h-full object-cover transition-opacity duration-200 ease-in-out"
                       // ref={previewRef}
                       onEnded={() => {

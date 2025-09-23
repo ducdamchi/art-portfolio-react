@@ -342,7 +342,7 @@ export default function Landing() {
           <div className="relative">
             <div className="photo-landing-mobileBottom relative bg-zinc-50">
               <div className="photo-landing-mobile-info flex flex-col justify-center gap-2 p-6">
-                <div>
+                <div className="font-bold">
                   INTRODUCTION
                   <br />
                 </div>

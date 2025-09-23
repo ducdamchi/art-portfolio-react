@@ -72,7 +72,7 @@ export default function Landing() {
     <div>
       <div>
         <div className="film-landing-whole relative top-0 left-0 h-screen w-screen overflow-hidden">
-          {!matchedFilm?.previewLanding && (
+          {(!matchedFilm?.previewLanding || isMobileMode) && (
             <img
               className="film-landing-background"
               src={`${import.meta.env.BASE_URL}${matchedFilm.thumbnail}`}
@@ -80,7 +80,7 @@ export default function Landing() {
               alt=""
             />
           )}
-          {matchedFilm?.previewLanding && (
+          {matchedFilm?.previewLanding && !isMobileMode && (
             <div>
               {/* <img
                 className="film-landing-background"
@@ -95,20 +95,22 @@ export default function Landing() {
                 autoPlay
                 loop
                 muted
+                playsInline
+                disablePictureInPicture
               ></video>
             </div>
           )}
           <div className="film-landing-overlay"></div>
 
-          <div className="film-landing-backArrow-wrapper-2 flex justify-center">
-            <div className="film-landing-backArrow-wrapper-1 flex p-6">
+          <div className="film-landing-backArrow-wrapper-2 z-20 flex justify-center">
+            <div className="film-landing-backArrow-wrapper-1 z-20 flex p-6">
               <div
-                className="film-landing-backArrow"
+                className="film-landing-backArrow z-20"
                 id="film-landing-backArrow"
               >
                 <Link
                   to={`/film`}
-                  className="flex items-center gap-1 font-bold"
+                  className="z-20 flex items-center gap-1 font-bold"
                   state={{
                     returnToIndex: currentIndex,
                   }}
@@ -119,6 +121,16 @@ export default function Landing() {
               </div>
             </div>
           </div>
+
+          {matchedFilm?.logo && (
+            <div className="flex w-full justify-end">
+              <div className="film-landing-logo-wrapper max absolute top-[7.5%] right-[5%] right-[10%] z-10 flex w-[10%] max-w-[15rem] min-w-[10rem] justify-end md:top-[15%] md:right-[15%]">
+                <div className="film-landing-logo">
+                  <img src={matchedFilm.logo} alt="" />
+                </div>
+              </div>
+            </div>
+          )}
 
           <div className="film-landing-viewButton-wrapper flex justify-center">
             <div
@@ -149,14 +161,6 @@ export default function Landing() {
                     {`${matchedFilm.runtime} mins`}
                   </div>
                 </div>
-
-                {matchedFilm?.logo && (
-                  <div className="flex w-full items-center justify-start">
-                    <div className="film-landing-logo">
-                      <img src={matchedFilm.logo} alt="" />
-                    </div>
-                  </div>
-                )}
               </div>
               {!isMobileMode && (
                 <div className="film-landing-synopsis-press">

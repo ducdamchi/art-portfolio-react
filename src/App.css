@@ -134,3 +134,26 @@ h1 {
   padding: 2px; */
   text-decoration: underline;
 }
+
+video {
+  pointer-events: none;
+
+  /* Hide all controls */
+  -webkit-controls: none;
+  -moz-controls: none;
+}
+
+/* Mobile-specific control hiding */
+@media (max-width: 768px) {
+  video::-webkit-media-controls-panel {
+    display: none !important;
+  }
+
+  video::-webkit-media-controls-play-button {
+    display: none !important;
+  }
+
+  video::-webkit-media-controls-start-playback-button {
+    display: none !important;
+  }
+}
