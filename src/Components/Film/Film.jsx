@@ -21,7 +21,7 @@ export default function Film() {
         </h1>
       </div>
 
-      <div className="relative top-25 flex items-center justify-center">
+      <div className="relative top-25 flex items-center justify-center border-0">
         <Carousel filmsData={filmsData} numSlidesIndex={numSlidesIndex} />
       </div>
 

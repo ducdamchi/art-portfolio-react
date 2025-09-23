@@ -37,7 +37,7 @@
 }
 
 .thumbnail-year {
-  font-weight: 700;
+  font-weight: 300;
 }
 
 .thumbnail-title,
@@ -53,8 +53,8 @@
   justify-content: center;
   /* border-width: 2px;
   border-color: orange; */
-  width: 100vw;
-  height: auto;
+  /* width: 100vw; */
+  /* height: auto; */
   overflow: hidden;
 }
 
@@ -73,6 +73,8 @@
 }
 
 .carousel-btn {
+  /* border-width: 1px; */
+  /* width: var(--slider-padding); */
   font-size: 1rem;
 }
 
@@ -333,7 +335,9 @@
   }
 
   .thumbnail-flex-item {
-    padding: 0.5rem;
+    padding: 0.8rem;
+    width: 100%;
+    /* height: 15rem; */
   }
 
   .thumbnail-box:hover {

@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState, useRef, useEffect } from 'react'
-import { useParams, Link } from 'react-router-dom'
+import { useParams, Link, useLocation } from 'react-router-dom'
 import '../../App.css'
 import './Film.css'
 import Modal from './Film_Modal'
@@ -25,8 +25,21 @@ export default function Landing() {
   const [screenWidth, setScreenWidth] = useState(window.innerWidth)
   const [screenHeight, setScreenHeight] = useState(window.innerHeight)
   const { filmURL } = useParams()
+  const location = useLocation()
 
   const matchedFilm = filmsData.find((film) => film.url === filmURL)
+
+  const [visible, setVisible] = useState(true)
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setVisible(false)
+    }, 5000)
+    return () => clearTimeout(timer)
+  }, [])
+
+  /* Receive data about carouselIndex and slidesOffset from Carousel page. Then send this data back to Carousel page, so that when user return from Landing page, they're at the part of the carousel that were being viewed (instead of scrolling from the start) */
+  const { currentIndex } = location.state || {}
 
   /* Dynamically obtain window size */
   useEffect(() => {
@@ -39,11 +52,13 @@ export default function Landing() {
     return () => {
       window.removeEventListener('resize', handleResize)
     }
+
+    console.log(matchedFilm.pressGallery)
   }, [])
 
   /* Flag mobile mode if screenwidth smaller than 768px */
   useEffect(() => {
-    screenWidth < 768 || screenHeight < 768
+    screenWidth <= 820 || screenHeight <= 768
       ? setIsMobileMode(true)
       : setIsMobileMode(false)
     // console.log(`Mobile mode: ${isMobileMode}`)
@@ -57,12 +72,32 @@ export default function Landing() {
     <div>
       <div>
         <div className="film-landing-whole relative top-0 left-0 h-screen w-screen overflow-hidden">
-          <img
-            className="film-landing-background"
-            src={`${import.meta.env.BASE_URL}${matchedFilm.thumbnail}`}
-            id={`thumbnail-film-${matchedFilm.id}`}
-            alt=""
-          />
+          {!matchedFilm?.previewLanding && (
+            <img
+              className="film-landing-background"
+              src={`${import.meta.env.BASE_URL}${matchedFilm.thumbnail}`}
+              id={`thumbnail-film-${matchedFilm.id}`}
+              alt=""
+            />
+          )}
+          {matchedFilm?.previewLanding && (
+            <div>
+              {/* <img
+                className="film-landing-background"
+                src={`${import.meta.env.BASE_URL}${matchedFilm.thumbnail}`}
+                id={`thumbnail-film-${matchedFilm.id}`}
+                alt=""
+                style={{opacity: isVisible ? 1 : 0}}
+              /> */}
+              <video
+                className="film-landing-background"
+                src={matchedFilm.previewLanding}
+                autoPlay
+                loop
+                muted
+              ></video>
+            </div>
+          )}
           <div className="film-landing-overlay"></div>
 
           <div className="film-landing-backArrow-wrapper-2 flex justify-center">
@@ -74,6 +109,9 @@ export default function Landing() {
                 <Link
                   to={`/film`}
                   className="flex items-center gap-1 font-bold"
+                  state={{
+                    returnToIndex: currentIndex,
+                  }}
                 >
                   <BiLeftArrowAlt className="text-xl" />
                   <div className="text-lg">BACK</div>
@@ -86,8 +124,10 @@ export default function Landing() {
             <div
               className="film-landing-viewButton md:5xl flex items-center gap-1 p-[1rem] text-4xl font-bold"
               onClick={() => {
-                setOpenModalId(matchedFilm.id)
-                setModalOpened(true)
+                if (matchedFilm.youtube !== '') {
+                  setOpenModalId(matchedFilm.id)
+                  setModalOpened(true)
+                }
               }}
             >
               <BiPlay className="film-landing-viewButton-icon" />
@@ -109,11 +149,14 @@ export default function Landing() {
                     {`${matchedFilm.runtime} mins`}
                   </div>
                 </div>
-                <div className="flex w-full items-center justify-start">
-                  <div className="film-landing-logo">
-                    <img src={matchedFilm.logo} alt="" />
+
+                {matchedFilm?.logo && (
+                  <div className="flex w-full items-center justify-start">
+                    <div className="film-landing-logo">
+                      <img src={matchedFilm.logo} alt="" />
+                    </div>
                   </div>
-                </div>
+                )}
               </div>
               {!isMobileMode && (
                 <div className="film-landing-synopsis-press">
@@ -121,18 +164,28 @@ export default function Landing() {
                     <div className="font-bold">SYNOPSIS</div>
                     <div>{matchedFilm.synopsis}</div>
                   </div>
-                  <div
-                    className="film-landing-press flex items-center gap-1 border-1 p-2"
-                    onClick={() => {
-                      setOpenPressId(matchedFilm.id)
-                      setPressOpened(true)
-                    }}
-                  >
-                    <div>
-                      <BiNews />
-                    </div>
-                    <div className="font-bold">PRESS GALLERY</div>
+                </div>
+              )}
+              {!isMobileMode && (
+                <div className="film-landing-third-column">
+                  <div className="film-landing-availability">
+                    <div className="font-bold">AVAILABILITY</div>
+                    <div>{matchedFilm.availability}</div>
                   </div>
+                  {matchedFilm?.pressGallery && (
+                    <div
+                      className="film-landing-press ml-1 flex items-center gap-1 border-1 p-2"
+                      onClick={() => {
+                        setOpenPressId(matchedFilm.id)
+                        setPressOpened(true)
+                      }}
+                    >
+                      <div>
+                        <BiNews />
+                      </div>
+                      <div className="font-bold">PRESS GALLERY</div>
+                    </div>
+                  )}
                 </div>
               )}
             </div>
@@ -171,31 +224,38 @@ export default function Landing() {
           )}
         </div>
 
+        {/* MOBILE MODE */}
         {isMobileMode && !modalOpened && !pressOpened && (
           <div className="relative">
             <div className="film-landing-mobileBottom relative bg-zinc-50">
               <div className="film-landing-mobile-info flex flex-col justify-center gap-2 p-6">
-                <div>
+                <div className="font-bold">
                   SYNOPSIS
                   <br />
                 </div>
                 <div>{matchedFilm.synopsis}</div>
-                <div className="film-landing-press-mobile">
-                  <div className="flex w-[50%] items-center gap-1 border-1 p-1 pl-2.5">
-                    <div>
-                      <BiNews />
-                    </div>
-                    <div
-                      className=""
-                      onClick={() => {
-                        setOpenPressId(matchedFilm.id)
-                        setPressOpened(true)
-                      }}
-                    >
-                      PRESS GALLERY
+                <div className="film-landing-availability-mobile mt-3">
+                  <div className="font-bold">AVAILABILITY</div>
+                  <div>{matchedFilm.availability}</div>
+                </div>
+                {matchedFilm?.pressGallery && (
+                  <div className="film-landing-press-mobile mt-3">
+                    <div className="flex max-w-[10rem] min-w-[8rem] items-center gap-1 border-1 p-1 pl-2.5">
+                      <div>
+                        <BiNews />
+                      </div>
+                      <div
+                        className=""
+                        onClick={() => {
+                          setOpenPressId(matchedFilm.id)
+                          setPressOpened(true)
+                        }}
+                      >
+                        PRESS GALLERY
+                      </div>
                     </div>
                   </div>
-                </div>
+                )}
               </div>
             </div>
 

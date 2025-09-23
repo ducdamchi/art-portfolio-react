@@ -1,6 +1,52 @@
 [
  {
   "id": 1,
+  "title": "DISTANCE UNKNOWN",
+  "year": "2026",
+  "director": "Duc Dam, Quynh-Anh Cao-Le",
+  "runtime": "30",
+  "country": "USA, Vietnam",
+  "language": "Vietnamese, English",
+  "synopsis": "50 years after the Vietnam War, two students from Hanoi travel to Orange County, California, where many Vietnamese war refugees settled in the 1970s. There, they asked three generations of Vietnamese American men, unknown to one another, to reflect on their national heritage.",
+  "recognition": "",
+  "screenings": "",
+  "poster": "film/01-distance-unknown/poster.jpg",
+  "thumbnail": "film/01-distance-unknown/thumb.jpg",
+  "youtube": "",
+  "url": "distance-unknown-2026",
+  "pressGallery": {
+   "title": "DISTANCE UNKNOWN - PRESS GALLERY",
+   "captions": [
+    "Slide deck. Updated Sep 19, 2025.",
+    "The main characters.",
+    "Collage from film excerpts."
+   ],
+   "numImages": 3,
+   "imgList": [
+    {
+     "id": "1",
+     "src": "film/01-distance-unknown/press_gallery/01.jpg",
+     "index": 0,
+     "description": "Slide deck. Updated Sep 19, 2025."
+    },
+    {
+     "id": "2",
+     "src": "film/01-distance-unknown/press_gallery/02.jpg",
+     "index": 1,
+     "description": "The main characters."
+    },
+    {
+     "id": "3",
+     "src": "film/01-distance-unknown/press_gallery/03.jpg",
+     "index": 2,
+     "description": "Collage from film excerpts."
+    }
+   ]
+  },
+  "availability": "The film is currently in post-production and is scheduled to release in mid-2026. See Press Gallery for open positions and contact information."
+ },
+ {
+  "id": 2,
   "title": "A SHORT FILM ABOUT LOVING",
   "year": "2020",
   "director": "Duc Dam",
@@ -10,14 +56,15 @@
   "synopsis": "Due to COVID-19, students from a utopian high school are forced to return home. Heartbroken from a recent break up, Tom wanders around and confronts lovers who were also experiencing separation.",
   "recognition": "Official Selection, Cannes Indie Shorts",
   "screenings": "OKIA Outdoor Cinema (Hanoi, Vietnam), Fulbright University Vietnam (HCMC, Vietnam), Mahindra United World College (Pune, India), Olympia Cinema (Cannes, France)",
-  "poster": "film/01-a-short-film-about-loving/poster.jpg",
-  "thumbnail": "film/01-a-short-film-about-loving/thumb.jpg",
+  "poster": "film/02-a-short-film-about-loving/poster.jpg",
+  "thumbnail": "film/02-a-short-film-about-loving/thumb.png",
   "youtube": "https://www.youtube.com/embed/R3FXbEKPpLw?si=NKTsv8k6vMgUTnJh",
   "url": "a-short-film-about-loving-2020",
-  "logo": "film/01-a-short-film-about-loving/logo.png",
+  "logo": "film/02-a-short-film-about-loving/logo.png",
   "pressGallery": {
    "title": "A SHORT FILM ABOUT LOVING - PRESS GALLERY",
    "captions": [
+    "Official poster.",
     "Email from Indie Shorts Cannes.",
     "Hanoi Grapevine News.",
     "VietnamNet News.",
@@ -30,75 +77,103 @@
     "Q&A with Nguyen Hoang Diep, Director of 'Đập Cánh Giữa Không Trung' (2014) and Founder of OKIA Hanoi Film Production & Creative Hub.",
     "Screening at Fulbright University."
    ],
-   "numImages": 11,
+   "numImages": 12,
    "imgList": [
     {
      "id": "1",
-     "src": "film/01-a-short-film-about-loving/press_gallery/01.png",
+     "src": "film/02-a-short-film-about-loving/press_gallery/00.jpg",
      "index": 0,
-     "description": "Email from Indie Shorts Cannes."
+     "description": "Official poster."
     },
     {
      "id": "2",
-     "src": "film/01-a-short-film-about-loving/press_gallery/02.png",
+     "src": "film/02-a-short-film-about-loving/press_gallery/01.png",
      "index": 1,
-     "description": "Hanoi Grapevine News."
+     "description": "Email from Indie Shorts Cannes."
     },
     {
      "id": "3",
-     "src": "film/01-a-short-film-about-loving/press_gallery/03.png",
+     "src": "film/02-a-short-film-about-loving/press_gallery/02.png",
      "index": 2,
-     "description": "VietnamNet News."
+     "description": "Hanoi Grapevine News."
     },
     {
      "id": "4",
-     "src": "film/01-a-short-film-about-loving/press_gallery/04.png",
+     "src": "film/02-a-short-film-about-loving/press_gallery/03.png",
      "index": 3,
-     "description": "Tien Phong News."
+     "description": "VietnamNet News."
     },
     {
      "id": "5",
-     "src": "film/01-a-short-film-about-loving/press_gallery/05.jpg",
+     "src": "film/02-a-short-film-about-loving/press_gallery/04.png",
      "index": 4,
-     "description": "Poster for Hanoi Screening."
+     "description": "Tien Phong News."
     },
     {
      "id": "6",
-     "src": "film/01-a-short-film-about-loving/press_gallery/06.png",
+     "src": "film/02-a-short-film-about-loving/press_gallery/05.jpg",
      "index": 5,
-     "description": "Post from Fulbright University Vietnam's Art Lab."
+     "description": "Poster for Hanoi Screening."
     },
     {
      "id": "7",
-     "src": "film/01-a-short-film-about-loving/press_gallery/07.jpg",
+     "src": "film/02-a-short-film-about-loving/press_gallery/06.png",
      "index": 6,
-     "description": "With Cuong Le and Thanh Nguyen, Director and D.O.P. of 'The Glorious Pain' (2020), and Thao Luu, Project Coordinator of OKIA Hanoi Film Production & Creative Hub."
+     "description": "Post from Fulbright University Vietnam's Art Lab."
     },
     {
      "id": "8",
-     "src": "film/01-a-short-film-about-loving/press_gallery/08.jpg",
+     "src": "film/02-a-short-film-about-loving/press_gallery/07.jpg",
      "index": 7,
-     "description": "Audience at Hanoi screening (1)."
+     "description": "With Cuong Le and Thanh Nguyen, Director and D.O.P. of 'The Glorious Pain' (2020), and Thao Luu, Project Coordinator of OKIA Hanoi Film Production & Creative Hub."
     },
     {
      "id": "9",
-     "src": "film/01-a-short-film-about-loving/press_gallery/09.jpg",
+     "src": "film/02-a-short-film-about-loving/press_gallery/08.jpg",
      "index": 8,
-     "description": "Audience at Hanoi screening (2)."
+     "description": "Audience at Hanoi screening (1)."
     },
     {
      "id": "10",
-     "src": "film/01-a-short-film-about-loving/press_gallery/10.jpg",
+     "src": "film/02-a-short-film-about-loving/press_gallery/09.jpg",
      "index": 9,
-     "description": "Q&A with Nguyen Hoang Diep, Director of 'Đập Cánh Giữa Không Trung' (2014) and Founder of OKIA Hanoi Film Production & Creative Hub."
+     "description": "Audience at Hanoi screening (2)."
     },
     {
      "id": "11",
-     "src": "film/01-a-short-film-about-loving/press_gallery/11.jpg",
+     "src": "film/02-a-short-film-about-loving/press_gallery/10.jpg",
      "index": 10,
+     "description": "Q&A with Nguyen Hoang Diep, Director of 'Đập Cánh Giữa Không Trung' (2014) and Founder of OKIA Hanoi Film Production & Creative Hub."
+    },
+    {
+     "id": "12",
+     "src": "film/02-a-short-film-about-loving/press_gallery/11.jpg",
+     "index": 11,
      "description": "Screening at Fulbright University."
     }
    ]
-  }
+  },
+  "availability": "This film is only available for offline screenings. Please contact for more details.",
+  "previewLanding": "film/02-a-short-film-about-loving/preview-landing.mp4",
+  "previewThumbnail": "film/02-a-short-film-about-loving/preview-thumbnail.mp4"
+ },
+ {
+  "id": 3,
+  "title": "LAST DAYS",
+  "year": "2019",
+  "director": "Duc Dam",
+  "runtime": "12",
+  "country": "India",
+  "language": "English",
+  "synopsis": "Pressed to do well in classes, Juan is oblivious to everything that takes place around him. That is, until an incident completely disrupts his routine.",
+  "recognition": "",
+  "screenings": "",
+  "poster": "film/03-last-days/poster.jpg",
+  "thumbnail": "film/03-last-days/thumb.jpg",
+  "youtube": "https://www.youtube.com/embed/COQGJy_WiyU",
+  "url": "last-days-2019",
+  "availability": "This film is available on YouTube.",
+  "previewLanding": "film/03-last-days/preview-landing.mp4",
+  "previewThumbnail": "film/03-last-days/preview-thumbnail.mp4"
  }
 ]

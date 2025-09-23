@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from 'react'
 import NavSection from '../NavSection'
 import Footer from '../Footer'
 import '../../App.css'
+import './About.css'
 
 export default function About() {
   return (
@@ -14,21 +15,14 @@ export default function About() {
         </h1>
       </div>
 
-      <div className="about-text mb-[4rem] flex items-center justify-center">
-        <div className="relative top-20 flex h-[90vh] w-[35%] max-w-[800px] min-w-[360px] flex-col gap-2 p-2">
-          <img src="about/about.jpg" alt="" className="border-5" />
+      <div className="about-text mt-[4rem] mb-[4rem] flex h-auto items-center justify-center">
+        <div className="relative flex h-[90vh] w-[35%] max-w-[540px] min-w-[320px] flex-col gap-2 p-2">
+          <img src="about/about.jpg" alt="" className="border-3" />
           <div className="p-2">
-            Duc Dam is a Vietnamese filmmaker, photographer, and web developer
-            born in Hanoi and based in Philadelphia. For all inquries, please
-            contact via{' '}
-            <a
-              href={`mailto:ducdamchi@gmail.com?
-              &subject=Just visited your website`}
-              className="underline"
-            >
-              email
-            </a>
-            .
+            Duc Dam is a Vietnamese filmmaker and photographer born in Hanoi and
+            based in Philadelphia. This online portfolio marks the beginning of
+            his journey into web development, something you'll find him doing
+            when not working on a production.
           </div>
           <div className="p-2">
             <div>

@@ -28,6 +28,8 @@ export default function Carousel_Items({
   const thumbnails = useRef(null)
   const titleRef = useRef(null)
   const location = useLocation()
+  const [isHovering, setIsHovering] = useState(false)
+  const [thumbnailState, setThumbnailState] = useState('image') //'image', 'video', 'transition'
 
   /*************** CSS **************/
   const THUMBNAIL_FLEX_CONTAINER = {
@@ -54,10 +56,14 @@ export default function Carousel_Items({
   function handleThumbnailInteraction(albumId, isMouseEnter) {
     if (isMouseEnter) {
       setHoverId(albumId)
+      setIsHovering(true)
+
       carouselBtnLeft.current.style.opacity = '0'
       carouselBtnRight.current.style.opacity = '0'
     } else {
       setHoverId(null)
+      setIsHovering(false)
+
       carouselBtnLeft.current.style.opacity = '1'
       carouselBtnRight.current.style.opacity = '1'
     }
@@ -104,11 +110,28 @@ export default function Carousel_Items({
     }
   }, [hoverId])
 
-  // useEffect(() => {
-  //   if (thumbnails.current) {
-  //     thumbnails.current.style.transform = `translateX(calc((${carouselIndex} + ${slidesOffset}) * -100%))`
-  //   }
-  // }, [carouselIndex, slidesOffset])
+  /* Adjust thumbnailState based on isHovering state */
+  useEffect(() => {
+    let timer1, timer2
+    if (isHovering) {
+      // count to 2 before setting video state
+      timer1 = setTimeout(() => {
+        setThumbnailState('transition')
+      }, 2000)
+      // give 200ms to transition to video
+      timer2 = setTimeout(() => {
+        setThumbnailState('video')
+      }, 2000)
+    } else {
+      setThumbnailState('image')
+    }
+
+    // always clear timer at the end
+    return () => {
+      clearTimeout(timer1)
+      clearTimeout(timer2)
+    }
+  }, [isHovering])
 
   /* Use ResizeObserver to observe size of thumbnail, and adjust size of title accordingly.  */
   useEffect(() => {
@@ -179,7 +202,7 @@ export default function Carousel_Items({
                     {album.title} <br />
                     <span
                       className="thumbnail-year"
-                      style={{ fontSize: `${titleSize * 0.045}px` }}
+                      style={{ fontSize: `${titleSize * 0.035}px` }}
                     >
                       {album.year}
                     </span>
@@ -211,20 +234,45 @@ export default function Carousel_Items({
                     currentIndex: carouselIndex,
                     currentOffset: slidesOffset,
                   }}
-                  className="absolute top-0 left-0 z-4 h-full w-full"
+                  className="absolute top-0 left-0 z-20 h-full w-full"
                 />
-                <div>
+
+                <div className="relative h-full w-full">
                   <img
-                    className="thumbnail-img"
+                    className="thumbnail-img relative top-0 object-contain"
                     id={`thumbnail-img-${album.id}`}
                     src={`${import.meta.env.BASE_URL}${album.thumbnail.src}`}
+                    style={{
+                      filter:
+                        thumbnailState === 'transition' && hoverId === album.id
+                          ? 'brightness(0)'
+                          : 'brightness(1)',
+                      opacity:
+                        thumbnailState === 'video' && hoverId === album.id
+                          ? '0'
+                          : '1',
+                      transition: 'filter opacity 200ms ease-in-out',
+                    }}
                   />
-                  <div className="thumbnail-img-overlay"></div>
+                  {thumbnailState === 'video' && hoverId === album.id && (
+                    <video
+                      src={album.preview}
+                      autoPlay
+                      loop
+                      muted
+                      className="absolute top-0 z-10 h-full object-contain transition-opacity duration-200 ease-in-out"
+                      // ref={previewRef}
+                      onEnded={() => {
+                        setThumbnailState('image')
+                      }}
+                    ></video>
+                  )}
+                  <div className="thumbnail-img-overlay relative z-10"></div>
                 </div>
 
                 <div
                   ref={album.id === 1 ? titleRef : null}
-                  className="thumbnail-title-year"
+                  className="thumbnail-title-year relative z-10"
                 >
                   <div
                     className="thumbnail-title"

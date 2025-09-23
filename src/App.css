@@ -28,7 +28,9 @@ h1,
 .photo-landing-info,
 .film-modal-close,
 .film-landing-info,
+.film-landing-press,
 .film-landing-synopsis-press,
+.film-landing-availability,
 .film-landing-mobile-info,
 .film-landing-backArrow,
 .film-landing-viewButton,
@@ -39,7 +41,8 @@ h1,
 .photo-landing-button-back,
 .modal-title,
 .modal-description,
-.modal-navbar-back {
+.modal-navbar-back,
+.contact-all {
   font-family: 'Candara', 'Optima', 'Helvetica', sans-serif;
 }
 
@@ -77,6 +80,7 @@ h1 {
 /* Medium size */
 .navbar-item,
 .about-text,
+.contact-all,
 .thumbnail-description,
 .film-landing-synopsis,
 .film-landing-country,

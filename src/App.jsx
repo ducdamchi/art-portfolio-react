@@ -7,6 +7,7 @@ import Film from './Components/Film/Film'
 import Film_Landing from './Components/Film/Film_Landing'
 import Woodworking from './Components/Woodworking/Woodworking'
 import About from './Components/About/About'
+import Contact from './Components/Contact/Contact'
 
 import { Route, Routes } from 'react-router-dom'
 
@@ -21,6 +22,7 @@ export default function App() {
         <Route path="/film/:filmURL" element={<Film_Landing />} />
         <Route path="/woodworking" element={<Woodworking />} />
         <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
       </Routes>
     </div>
   )

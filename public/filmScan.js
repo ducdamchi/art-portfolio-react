@@ -59,6 +59,9 @@ class Film {
     url,
     logo,
     pressGallery,
+    availability,
+    previewLanding,
+    previewThumbnail,
   ) {
     this.id = id //int, unique id of each film, starting from 1
     this.title = title //str, tile of project
@@ -76,6 +79,9 @@ class Film {
     this.url = url //url extention, for example: 'example-project-1' in 'abc.com/photo/example-project-1'
     this.logo = logo //str, src to logos from film festivals
     this.pressGallery = pressGallery
+    this.availability = availability
+    this.previewLanding = previewLanding
+    this.previewThumbnail = previewThumbnail
   }
 }
 
@@ -211,6 +217,7 @@ function fetchFilms(pathname) {
         film.screenings = film_data.screenings
         film.youtube = film_data.youtube
         film.url = toDashedLowerCase(film_data.title) + `-${film_data.year}`
+        film.availability = film_data.availability
       }
 
       /* If content is an image file, it can be either the poster or thumbnail. Extract path to each*/
@@ -225,6 +232,16 @@ function fetchFilms(pathname) {
           let logo_path = path.join(pathname, dir, content)
           film.logo = logo_path
         }
+      }
+
+      if (content.includes('preview-landing')) {
+        let preview_path_1 = path.join(pathname, dir, content)
+        film.previewLanding = preview_path_1
+      }
+
+      if (content.includes('preview-thumbnail')) {
+        let preview_path_2 = path.join(pathname, dir, content)
+        film.previewThumbnail = preview_path_2
       }
 
       /* If found 'press_gallery' folder */

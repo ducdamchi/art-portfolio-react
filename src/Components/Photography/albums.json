@@ -315,7 +315,8 @@
     "index": 41,
     "description": "End of roll."
    }
-  ]
+  ],
+  "preview": "photography/Highlights/01-til-theres-no-wind/preview.mp4"
  },
  {
   "id": 2,
@@ -537,12 +538,13 @@
     "index": 27,
     "description": "Three days before the wedding. L and Th at a dinner table."
    }
-  ]
+  ],
+  "preview": "photography/Highlights/02-wedding-in-lolo-village/preview.mp4"
  },
  {
   "id": 3,
   "title": "STRAW HAT IN THE WEST",
-  "year": "2025-PRESENT",
+  "year": "2025-present",
   "description": [
    "This series follows C as he traveled through the American West carrying something special: a straw hat with a red ribbon. In the famous manga One Piece, the protagonist is known for always wearing a hat with the exact same pattern. By bringing a symbol of Japanese pop culture into iconic landscapes of the United States, C had managed to create a playful stage in which he himself was the protagonist. There, C was acting out, quite literally, a comical moment in globalization.",
    "These images were made possible by the use of a Mamiya RB67--a much beloved medium format camera--that was randomly lent to me the night before departure. Because of the size and weight of the camera, plus the tripod to which it's always attached, I had to repack my entire carry-on bag to make space for this spontaneous addition. Carrying this setup on deep hikes into national parks, I gained a new appreciation for photographers like Ansel Adams, who pioneered the use of large format cameras to capture breathtaking landscapes of the American West.",
@@ -617,12 +619,13 @@
     "index": 7,
     "description": "C and his straw hat. To be continued."
    }
-  ]
+  ],
+  "preview": "photography/Highlights/03-straw-hat-in-the-west/preview.mp4"
  },
  {
   "id": 4,
   "title": "VERTICAL AFTERNOONS",
-  "year": "2018-PRESENT",
+  "year": "2018",
   "description": [
    "Hanoi is a very busy city, where people being busy against the backdrop of other busy things has become the center thesis of many foreign photographers. However, there is also a local sentiment that is widely shared, but often unspoken: when the sun retreats to the horizon, people also desire a retreat from the chaos of the day. This desire creates a distinct sense of relief that many associate with the afternoon hours of Hanoi.",
    "For me, the temporal dimension of this sentiment is best captured not through people, but through signposts in which people sometimes are a part of. The vertical orientation of this series tries to mimic that same effect of signposts: standing vertically to isolate themselves from chaos, and quietly informing us of what’s about to come."
@@ -766,7 +769,8 @@
     "index": 17,
     "description": "Afternoon light reaching a room"
    }
-  ]
+  ],
+  "preview": "photography/Highlights/04-vertical-afternoons/preview.mp4"
  },
  {
   "id": 5,
@@ -839,7 +843,8 @@
     "index": 6,
     "description": "Apple, Pomelo, Orange, Canteloupe."
    }
-  ]
+  ],
+  "preview": "photography/Highlights/05-organic-cosmos/preview.mp4"
  },
  {
   "id": 6,
@@ -954,6 +959,7 @@
     "index": 12,
     "description": "Rokkaku Temple."
    }
-  ]
+  ],
+  "preview": "photography/Highlights/06-impressions-kawaguchiko/preview.mp4"
  }
 ]

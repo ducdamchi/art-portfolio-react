@@ -16,6 +16,8 @@ export default function Carousel({ filmsData, numSlidesIndex }) {
   // const [slidesOffset, setSlidesOffset] = useState(0);
   const carouselBtnLeft = useRef(null)
   const carouselBtnRight = useRef(null)
+  const carouselBtnLeftArrow = useRef(null)
+  const carouselBtnRightArrow = useRef(null)
 
   /*************** FUNCTIONS **************/
   /* Disable a button for time_ms miliseconds */
@@ -97,16 +99,18 @@ export default function Carousel({ filmsData, numSlidesIndex }) {
 
   /*************** HTML **************/
   return (
-    <div className="film-carousel-whole">
+    <div className="film-carousel-whole border-0 border-blue-300">
       {/* Left side button */}
-      <div className="z-[3] flex h-full flex-1 items-center justify-center bg-[rgb(250,250,250)]">
+      <div
+        className="film-carousel-btn-bg z-[3] ml-[-2px] flex flex-1 items-center justify-center border-0 border-amber-500 bg-[rgb(250,250,250)]"
+        ref={carouselBtnLeft}
+      >
         <button
-          ref={carouselBtnLeft}
           className="film-carousel-btn film-carousel-btn-left"
           onClick={prevSlide}
           disabled={leftDisabled}
         >
-          <div>&#8249;</div>
+          <div ref={carouselBtnLeftArrow}>&#8249;</div>
         </button>
       </div>
 
@@ -114,21 +118,26 @@ export default function Carousel({ filmsData, numSlidesIndex }) {
         <Carousel_Items
           filmsData={filmsData}
           carouselIndex={carouselIndex}
+          setCarouselIndex={setCarouselIndex}
           isEdgeTransition={isEdgeTransition}
           carouselBtnLeft={carouselBtnLeft}
           carouselBtnRight={carouselBtnRight}
+          carouseBtnLeftArrow={carouselBtnLeftArrow}
+          carouseBtnRightArrow={carouselBtnRightArrow}
         />
       </div>
 
       {/* Right side button */}
-      <div className="z-[3] flex h-full flex-1 items-center justify-center bg-[rgb(250,250,250)]">
+      <div
+        className="film-carousel-btn-bg z-[3] mr-[-2px] flex flex-1 items-center justify-center border-0 border-amber-500 bg-[rgb(250,250,250)]"
+        ref={carouselBtnRight}
+      >
         <button
-          ref={carouselBtnRight}
           className="film-carousel-btn film-carousel-btn-right"
           onClick={nextSlide}
           disabled={rightDisabled}
         >
-          <div>&#8250;</div>
+          <div ref={carouselBtnRightArrow}>&#8250;</div>
         </button>
       </div>
     </div>

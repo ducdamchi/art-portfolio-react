@@ -26,6 +26,7 @@ class Album {
     thumbnail,
     url,
     imgList,
+    preview,
   ) {
     this.id = id //int, unique id of the album among all albums, starting from x.1
     this.title = title //string, tile of project
@@ -39,6 +40,7 @@ class Album {
     this.url = url //url extention, for example: 'example-project-1' in 'abc.com/photo/example-project-1'
 
     this.imgList = imgList //list of Image objects
+    this.preview = preview //string, src to preview video
   }
 }
 
@@ -120,6 +122,11 @@ function fetchSubDirAlbums(pathname, dir, subDirs, isHighlight) {
           // console.log(`${album.title}: ${img.description}`)
           album_imgs.push(img)
         }
+      }
+
+      if (content.includes('preview')) {
+        let preview_path = path.join(pathname, dir, subdir, content)
+        album.preview = preview_path
       }
     })
 

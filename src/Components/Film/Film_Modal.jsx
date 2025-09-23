@@ -46,15 +46,17 @@ export default function ModalViewer({ film, openModalId, closeModal }) {
               <div className="text-base">BACK</div>
             </div>
 
-            <div className="h-full w-full">
-              <iframe
-                width="100%"
-                height="100%"
-                src={film.youtube}
-                title="YouTube video player"
-                allowFullScreen
-              ></iframe>
-            </div>
+            {film?.youtube && (
+              <div className="h-full w-full">
+                <iframe
+                  width="100%"
+                  height="100%"
+                  src={film.youtube}
+                  title="YouTube video player"
+                  allowFullScreen
+                ></iframe>
+              </div>
+            )}
           </div>
         </div>
       </>,
