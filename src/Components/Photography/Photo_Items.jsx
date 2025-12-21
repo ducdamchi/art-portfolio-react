@@ -294,7 +294,7 @@ export default function Carousel_Items({
               {album.id === hoverId && (
                 <div
                   id={`thumbnail-description-${album.id}`}
-                  className="thumbnail-description text-lg font-thin"
+                  className="thumbnail-description mb-30 text-lg font-thin"
                 >
                   {`${album.description[0].substring(0, 250)} [...]`}
                 </div>

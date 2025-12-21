@@ -10,20 +10,33 @@ import About from './Components/About/About'
 import Contact from './Components/Contact/Contact'
 
 import { Route, Routes } from 'react-router-dom'
+import { FlickeringGrid } from '@/components/ui/shadcn-io/flickering-grid/index.tsx'
 
 export default function App() {
   return (
-    <div className="routes-container">
-      <Routes>
-        <Route path="/" element={<Photography />} />
-        <Route path="/photography" element={<Photography />} />
-        <Route path="/photography/:photoURL" element={<Photo_Landing />} />
-        <Route path="/film" element={<Film />} />
-        <Route path="/film/:filmURL" element={<Film_Landing />} />
-        <Route path="/woodworking" element={<Woodworking />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/contact" element={<Contact />} />
-      </Routes>
+    <div className="bg-zinc-50">
+      {/* <NavSection /> */}
+      <div className="absolute z-0 h-screen w-screen">
+        <FlickeringGrid
+          squareSize={4}
+          gridGap={10}
+          flickerChance={0.15}
+          color="rgba(125, 125, 125, 1)"
+          maxOpacity={0.4}
+        />
+      </div>
+      <div className="routes-container">
+        <Routes>
+          <Route path="/" element={<Photography />} />
+          <Route path="/photography" element={<Photography />} />
+          <Route path="/photography/:photoURL" element={<Photo_Landing />} />
+          <Route path="/film" element={<Film />} />
+          <Route path="/film/:filmURL" element={<Film_Landing />} />
+          <Route path="/woodworking" element={<Woodworking />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+        </Routes>
+      </div>
     </div>
   )
 }

@@ -30,6 +30,7 @@ export default function Landing() {
   const imgRef = useRef(null)
   const infoBoxRef = useRef(null)
   const headerRef = useRef(null)
+  const mobileBtnRef = useRef(null)
   const location = useLocation()
   const { photoURL } = useParams()
   const matchedAlbum = albumsData.find((album) => album.url === photoURL)
@@ -78,6 +79,7 @@ export default function Landing() {
     const img = imgRef.current
     const infoBox = infoBoxRef.current
     const header = headerRef.current
+    const mobileBtn = mobileBtnRef.current
     const colorThief = new ColorThief()
 
     const applyColor = () => {
@@ -97,14 +99,18 @@ export default function Landing() {
         if (brightness < 130) {
           infoBox.style.borderColor = `rgba(${color[0]}, ${color[1]}, ${color[2]}, 0.85)`
           header.style.backgroundColor = `rgba(${color[0]}, ${color[1]}, ${color[2]}, 0.85)`
+          mobileBtn.style.backgroundColor = `rgba(${color[0]}, ${color[1]}, ${color[2]}, 0.85)`
           /* If bg a little light, reduce each rgb value by 33% */
         } else if (130 <= brightness < 194) {
           infoBox.style.borderColor = `rgba(${color[0] * 0.66}, ${color[1] * 0.66}, ${color[2] * 0.66}, 0.85)`
           header.style.backgroundColor = `rgba(${color[0] * 0.66}, ${color[1] * 0.66}, ${color[2] * 0.66}, 0.85)`
+          mobileBtn.style.backgroundColor = `rgba(${color[0] * 0.66}, ${color[1] * 0.66}, ${color[2] * 0.66}, 0.85)`
+
           /* If bg too light, reduce each rgb value by 66% */
         } else {
           infoBox.style.borderColor = `rgba(${color[0] * 0.33}, ${color[1] * 0.33}, ${color[2] * 0.33}, 0.85)`
           header.style.backgroundColor = `rgba(${color[0] * 0.33}, ${color[1] * 0.33}, ${color[2] * 0.33}, 0.85)`
+          mobileBtn.style.backgroundColor = `rgba(${color[0] * 0.33}, ${color[1] * 0.33}, ${color[2] * 0.33}, 0.85)`
         }
         // if (infoBox) infoBox.style.borderColor = rgb
         // if (header) header.style.backgroundColor = rgb
@@ -114,8 +120,10 @@ export default function Landing() {
     }
 
     if (img && img.complete && img.naturalHeight !== 0) {
+      if (infoBox && header && mobileBtn) {
+        applyColor()
+      }
       // Cached image already loaded
-      applyColor()
     } else if (img) {
       // Wait for image to load
       img.addEventListener('load', applyColor)
@@ -169,6 +177,12 @@ export default function Landing() {
     }
   }, [boxHeight, screenHeight, screenWidth, modalOpened, isMobileMode])
 
+  useEffect(() => {
+    if (mobileBtnRef.current) {
+      console.log(mobileBtnRef.current.style.backgroundColor)
+    }
+  }, [mobileBtnRef])
+
   if (!matchedAlbum) {
     return <div>Page not found</div>
   }
@@ -212,7 +226,8 @@ export default function Landing() {
 
               <div className="photo-landing-viewButton-wrapper flex justify-center">
                 <div
-                  className="photo-landing-viewButton md:5xl text-4xl"
+                  ref={mobileBtnRef}
+                  className="photo-landing-viewButton md:5xl rounded-sm text-4xl"
                   onClick={() => {
                     setOpenModalId(matchedAlbum.id)
                     setModalOpened(true)
@@ -244,12 +259,12 @@ export default function Landing() {
             <>
               <div className="photo-landing-info-wrapper flex justify-center">
                 <div
-                  className="photo-landing-info-all flex flex-col border-0"
+                  className="photo-landing-info-all flex flex-col rounded-lg border-0"
                   id={`photo-landing-info-all-${matchedAlbum.id}`}
                   ref={infoBoxRef}
                 >
                   <div
-                    className="photo-landing-header p-3 pl-6"
+                    className="photo-landing-header rounded-t-lg p-3 pl-6"
                     ref={headerRef}
                   >
                     <div className="photo-landing-button-back z-2 flex w-[15%] items-center justify-start text-white">
@@ -288,7 +303,7 @@ export default function Landing() {
                   </div>
                   <div className="photo-landing-buttons absolute bottom-0 mb-5 flex w-full justify-center p-6">
                     <div
-                      className="photo-landing-button-view z-10 flex items-center justify-center gap-1 border-1 p-2"
+                      className="photo-landing-button-view z-10 flex items-center justify-center gap-1 rounded-sm border-1 p-2"
                       onClick={() => {
                         setOpenModalId(matchedAlbum.id)
                         setModalOpened(true)
@@ -311,7 +326,7 @@ export default function Landing() {
                   </div>
                 </div>
                 <div className="flex gap-2 text-center text-white">
-                  <div className="flex items-center text-2xl">
+                  {/* <div className="flex items-center text-2xl">
                     <a
                       href={`mailto:ducdamchi@gmail.com?
                           &subject=Just visited your website`}
@@ -326,7 +341,7 @@ export default function Landing() {
                     >
                       <BiLogoInstagramAlt />
                     </a>
-                  </div>
+                  </div> */}
                   {/* <div className="text-2xl">
                         <a href="https://github.com/ducdamchi" target="_blank">
                           <BiLogoGithub />

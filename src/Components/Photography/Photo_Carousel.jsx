@@ -5,6 +5,7 @@ import '../../App.css'
 import './Photography.css'
 import Carousel_Items from './Photo_Items'
 import { BiChevronLeft, BiChevronRight } from 'react-icons/bi'
+import { FlickeringGrid } from '@/components/ui/shadcn-io/flickering-grid/index.tsx'
 
 export default function Carousel({
   albumsData,
@@ -204,7 +205,15 @@ export default function Carousel({
     <div className="carousel-whole" style={CAROUSEL_WHOLE}>
       {/* Left side button */}
       <div>
-        <div className="carousel-btn-bg btn-bg-left"></div>
+        <div className="carousel-btn-bg btn-bg-left">
+          <FlickeringGrid
+            squareSize={4}
+            gridGap={10}
+            flickerChance={0.15}
+            color="rgba(125, 125, 125, 1)"
+            maxOpacity={0.4}
+          />
+        </div>
         <button
           ref={carouselBtnLeft}
           style={CAROUSEL_BTN_STYLE}
@@ -231,7 +240,15 @@ export default function Carousel({
 
       {/* Right side button */}
       <div>
-        <div className="carousel-btn-bg btn-bg-right"></div>
+        <div className="carousel-btn-bg btn-bg-right">
+          <FlickeringGrid
+            squareSize={4}
+            gridGap={10}
+            flickerChance={0.15}
+            color="rgba(125, 125, 125, 1)"
+            maxOpacity={0.4}
+          />
+        </div>
         <button
           ref={carouselBtnRight}
           style={CAROUSEL_BTN_STYLE}

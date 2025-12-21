@@ -60,16 +60,16 @@ export default function NavSection() {
   return (
     <>
       {!isHamburger && (
-        <div className="navbar-all static top-0 flex h-[20%] w-full items-center justify-start p-5">
+        <div className="navbar-all absolute top-0 z-100 flex h-auto w-full items-center justify-start p-5">
           {/* Logo section */}
-          <div className="navbar-name m-1 flex aspect-square h-full items-center justify-center border-2 border-black p-2 text-xl font-medium">
+          <div className="navbar-name m-1 flex aspect-square h-[4rem] items-center justify-center rounded-sm border-1 border-black bg-zinc-50 p-2 text-xl font-medium">
             {/* <Link to="/">DUC DAM</Link> */}
             DUC <br />
             DAM
           </div>
 
           {/* Navigation bar */}
-          <nav className="m-2 flex max-w-[80%] items-center justify-center gap-2 p-2 font-medium">
+          <nav className="m-2 flex h-[4rem] max-w-[80%] items-center justify-center gap-2 rounded-sm border-1 bg-zinc-50 p-2 font-medium">
             <div className="navbar-item m-1 inline-block p-1 duration-200 ease-out hover:scale-[1.05]">
               <CustomLink to="/photography">Photography</CustomLink>
             </div>
@@ -95,7 +95,7 @@ export default function NavSection() {
 
       {isHamburger && (
         <>
-          <div className="relative top-0 z-80 flex h-[20%] max-h-[5rem] w-full items-center justify-start bg-zinc-50">
+          <div className="absolute top-0 z-80 z-100 flex h-auto max-h-[5rem] w-full items-center justify-start border-b-1 bg-zinc-50">
             <button className="p-1 pl-4">
               {menuOpened ? (
                 <MdClose

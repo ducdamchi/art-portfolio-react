@@ -9,22 +9,21 @@ export default function About() {
     <>
       <NavSection />
 
-      <div className="relative top-10 flex w-[100vw] items-center justify-center p-5">
-        <h1 className="m-1 flex items-center justify-center p-1 font-semibold">
+      <div className="relative top-25 flex w-[100vw] items-center justify-center p-5">
+        <h1 className="m-1 flex w-auto items-center justify-center overflow-hidden rounded-xl border-0 bg-zinc-50 p-4 font-black">
           ABOUT
         </h1>
       </div>
 
-      <div className="about-text mt-[4rem] mb-[4rem] flex h-auto items-center justify-center">
-        <div className="relative flex h-[90vh] w-[35%] max-w-[540px] min-w-[320px] flex-col gap-2 p-2">
-          <img src="about/about.jpg" alt="" className="border-3" />
-          <div className="p-2">
-            Duc Dam is a Vietnamese filmmaker and photographer born in Hanoi and
-            based in Philadelphia. This online portfolio marks the beginning of
-            his journey into web development, something you'll find him doing
-            when not working on a production.
+      <div className="about-text mt-30 flex h-auto items-center justify-center pb-30">
+        <div className="relative flex h-auto w-[35%] max-w-[540px] min-w-[320px] flex-col gap-2 p-2">
+          <img src="about/about.jpg" alt="" className="rounded-xl border-1" />
+          <div className="rounded-xl border-1 bg-zinc-50 p-4">
+            Duc Dam is a fullstack developer born in Hanoi and based in
+            Philadelphia. This portfolio showcases some of the things that he's
+            up to in his free time.
           </div>
-          <div className="p-2">
+          <div className="rounded-xl border-1 bg-zinc-50 p-4">
             <div>
               EDUCATION: <br />
             </div>
@@ -51,7 +50,7 @@ export default function About() {
         </div>
       </div>
 
-      <div className="relative bottom-0 z-0 h-[20rem] border-blue-500"></div>
+      {/* <div className="relative bottom-0 z-0 h-[20rem] border-blue-500"></div> */}
 
       <Footer />
     </>
