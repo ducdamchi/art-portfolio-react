@@ -31,6 +31,8 @@ export default function Landing() {
   const infoBoxRef = useRef(null)
   const headerRef = useRef(null)
   const mobileBtnRef = useRef(null)
+  const viewBtnRef = useRef(null)
+
   const location = useLocation()
   const { photoURL } = useParams()
   const matchedAlbum = albumsData.find((album) => album.url === photoURL)
@@ -74,58 +76,53 @@ export default function Landing() {
 
   /* Pick color for info-box header from dominant color of background */
   useEffect(() => {
-    if (!matchedAlbum || isMobileMode || modalOpened) return
+    if (!matchedAlbum || modalOpened) return
 
     const img = imgRef.current
-    const infoBox = infoBoxRef.current
     const header = headerRef.current
+    const viewBtn = viewBtnRef.current
     const mobileBtn = mobileBtnRef.current
+
+    if (!img || (!header && !viewBtn && !mobileBtn)) return
+
     const colorThief = new ColorThief()
+
+    const getColorWithBrightness = () => {
+      const color = colorThief.getColor(img)
+      const brightness = Math.round(
+        Math.sqrt(
+          color[0] * color[0] * 0.241 +
+            color[1] * color[1] * 0.691 +
+            color[2] * color[2] * 0.068,
+        ),
+      )
+      return { color, brightness }
+    }
+
+    const getAdjustedColor = (color, brightness) => {
+      let scale = 1
+      if (brightness >= 194) scale = 0.33
+      else if (brightness >= 130) scale = 0.66
+
+      return `rgba(${color[0] * scale}, ${color[1] * scale}, ${color[2] * scale}, 0.85)`
+    }
 
     const applyColor = () => {
       try {
-        const color = colorThief.getColor(img) // sync
-        /* Check brightness of dominant color to ensure readability 
-      Formula: https://www.nbdtech.com/Blog/archive/2008/04/27/Calculating-the-Perceived-Brightness-of-a-Color.aspx */
-        const brightness = Math.round(
-          Math.sqrt(
-            color[0] * color[0] * 0.241 +
-              color[1] * color[1] * 0.691 +
-              color[2] * color[2] * 0.068,
-          ),
-        )
-        // const rgb = `rgb(${color[0]}, ${color[1]}, ${color[2]})`
-        /* If bg dark enough, font can be white */
-        if (brightness < 130) {
-          infoBox.style.borderColor = `rgba(${color[0]}, ${color[1]}, ${color[2]}, 0.85)`
-          header.style.backgroundColor = `rgba(${color[0]}, ${color[1]}, ${color[2]}, 0.85)`
-          mobileBtn.style.backgroundColor = `rgba(${color[0]}, ${color[1]}, ${color[2]}, 0.85)`
-          /* If bg a little light, reduce each rgb value by 33% */
-        } else if (130 <= brightness < 194) {
-          infoBox.style.borderColor = `rgba(${color[0] * 0.66}, ${color[1] * 0.66}, ${color[2] * 0.66}, 0.85)`
-          header.style.backgroundColor = `rgba(${color[0] * 0.66}, ${color[1] * 0.66}, ${color[2] * 0.66}, 0.85)`
-          mobileBtn.style.backgroundColor = `rgba(${color[0] * 0.66}, ${color[1] * 0.66}, ${color[2] * 0.66}, 0.85)`
+        const { color, brightness } = getColorWithBrightness()
+        const bgColor = getAdjustedColor(color, brightness)
 
-          /* If bg too light, reduce each rgb value by 66% */
-        } else {
-          infoBox.style.borderColor = `rgba(${color[0] * 0.33}, ${color[1] * 0.33}, ${color[2] * 0.33}, 0.85)`
-          header.style.backgroundColor = `rgba(${color[0] * 0.33}, ${color[1] * 0.33}, ${color[2] * 0.33}, 0.85)`
-          mobileBtn.style.backgroundColor = `rgba(${color[0] * 0.33}, ${color[1] * 0.33}, ${color[2] * 0.33}, 0.85)`
-        }
-        // if (infoBox) infoBox.style.borderColor = rgb
-        // if (header) header.style.backgroundColor = rgb
+        if (mobileBtn) mobileBtn.style.color = bgColor
+        if (header) header.style.backgroundColor = bgColor
+        if (viewBtn) viewBtn.style.backgroundColor = bgColor
       } catch (err) {
         console.warn('ColorThief error:', err)
       }
     }
 
-    if (img && img.complete && img.naturalHeight !== 0) {
-      if (infoBox && header && mobileBtn) {
-        applyColor()
-      }
-      // Cached image already loaded
-    } else if (img) {
-      // Wait for image to load
+    if (img.complete && img.naturalHeight !== 0) {
+      applyColor()
+    } else {
       img.addEventListener('load', applyColor)
       return () => img.removeEventListener('load', applyColor)
     }
@@ -179,9 +176,9 @@ export default function Landing() {
 
   useEffect(() => {
     if (mobileBtnRef.current) {
-      console.log(mobileBtnRef.current.style.backgroundColor)
+      console.log('mobileBtnRef: ', mobileBtnRef.curent)
     }
-  }, [mobileBtnRef])
+  }, [mobileBtnRef.current])
 
   if (!matchedAlbum) {
     return <div>Page not found</div>
@@ -227,13 +224,14 @@ export default function Landing() {
               <div className="photo-landing-viewButton-wrapper flex justify-center">
                 <div
                   ref={mobileBtnRef}
-                  className="photo-landing-viewButton md:5xl rounded-sm text-4xl"
+                  className="photo-landing-viewButton flex cursor-pointer items-center justify-center gap-1 rounded-xl border-1 bg-white p-3 pt-2 pb-2 text-base font-bold uppercase"
                   onClick={() => {
                     setOpenModalId(matchedAlbum.id)
                     setModalOpened(true)
                   }}
                 >
-                  <BiFolderOpen />
+                  <BiFolderOpen className="text-2xl" />
+                  open
                 </div>
               </div>
 
@@ -303,14 +301,15 @@ export default function Landing() {
                   </div>
                   <div className="photo-landing-buttons absolute bottom-0 mb-5 flex w-full justify-center p-6">
                     <div
-                      className="photo-landing-button-view z-10 flex items-center justify-center gap-1 rounded-sm border-1 p-2"
+                      ref={viewBtnRef}
+                      className="photo-landing-button-view z-10 flex cursor-pointer items-center justify-center gap-1 rounded-lg p-3 font-bold text-zinc-50"
                       onClick={() => {
                         setOpenModalId(matchedAlbum.id)
                         setModalOpened(true)
                       }}
                     >
                       <BiFolderOpen className="text-xl" />
-                      <div className="text-base">VIEW</div>
+                      <div className="text-base uppercase">open</div>
                       {/* <BiRightArrowAlt className="text-xl" /> */}
                     </div>
                   </div>

@@ -26,6 +26,9 @@ export default function Landing() {
   const [screenHeight, setScreenHeight] = useState(window.innerHeight)
   const { filmURL } = useParams()
   const location = useLocation()
+  const playBtnRef = useRef(null)
+  const imgRef = useRef(null)
+  const [backdropColor, setBackdropColor] = useState('')
 
   const matchedFilm = filmsData.find((film) => film.url === filmURL)
 
@@ -64,6 +67,55 @@ export default function Landing() {
     // console.log(`Mobile mode: ${isMobileMode}`)
   }, [screenWidth])
 
+  useEffect(() => {
+    if (!matchedFilm || modalOpened || pressOpened) return
+
+    const img = imgRef.current
+    // const playBtn = playBtnRef.current
+
+    if (!img) return
+
+    const colorThief = new ColorThief()
+
+    const getColorWithBrightness = () => {
+      const color = colorThief.getColor(img)
+      const brightness = Math.round(
+        Math.sqrt(
+          color[0] * color[0] * 0.241 +
+            color[1] * color[1] * 0.691 +
+            color[2] * color[2] * 0.068,
+        ),
+      )
+      return { color, brightness }
+    }
+
+    const getAdjustedColor = (color, brightness) => {
+      let scale = 1
+      if (brightness >= 194) scale = 0.33
+      else if (brightness >= 130) scale = 0.66
+
+      return `rgba(${color[0] * scale}, ${color[1] * scale}, ${color[2] * scale}, 0.85)`
+    }
+
+    const applyColor = () => {
+      try {
+        const { color, brightness } = getColorWithBrightness()
+        const bgColor = getAdjustedColor(color, brightness)
+        setBackdropColor(bgColor)
+        // if (playBtn) playBtn.style.color = bgColor
+      } catch (err) {
+        console.warn('ColorThief error:', err)
+      }
+    }
+
+    if (img.complete && img.naturalHeight !== 0) {
+      applyColor()
+    } else {
+      img.addEventListener('load', applyColor)
+      return () => img.removeEventListener('load', applyColor)
+    }
+  }, [matchedFilm?.id, modalOpened, pressOpened])
+
   if (!matchedFilm) {
     return <div>Page not found</div>
   }
@@ -72,6 +124,13 @@ export default function Landing() {
     <div>
       <div>
         <div className="film-landing-whole relative top-0 left-0 h-screen w-screen overflow-hidden">
+          <img
+            ref={imgRef}
+            className="film-landing-background hidden"
+            src={`${import.meta.env.BASE_URL}${matchedFilm.thumbnail}`}
+            id={`thumbnail-film-${matchedFilm.id}`}
+            alt=""
+          />
           {(!matchedFilm?.previewLanding || isMobileMode) && (
             <img
               className="film-landing-background"
@@ -82,13 +141,6 @@ export default function Landing() {
           )}
           {matchedFilm?.previewLanding && !isMobileMode && (
             <div>
-              {/* <img
-                className="film-landing-background"
-                src={`${import.meta.env.BASE_URL}${matchedFilm.thumbnail}`}
-                id={`thumbnail-film-${matchedFilm.id}`}
-                alt=""
-                style={{opacity: isVisible ? 1 : 0}}
-              /> */}
               <video
                 className="film-landing-background"
                 src={matchedFilm.previewLanding}
@@ -124,7 +176,7 @@ export default function Landing() {
 
           {matchedFilm?.logo && (
             <div className="flex w-full justify-end">
-              <div className="film-landing-logo-wrapper max absolute top-[7.5%] right-[5%] right-[10%] z-10 flex w-[10%] max-w-[15rem] min-w-[10rem] justify-end md:top-[15%] md:right-[15%]">
+              <div className="film-landing-logo-wrapper max absolute top-[7.5%] right-[5%] right-[10%] z-2 flex w-[10%] max-w-[15rem] min-w-[10rem] justify-end md:top-[15%] md:right-[15%]">
                 <div className="film-landing-logo">
                   <img src={matchedFilm.logo} alt="" />
                 </div>
@@ -134,7 +186,11 @@ export default function Landing() {
 
           <div className="film-landing-viewButton-wrapper flex justify-center">
             <div
-              className="film-landing-viewButton md:5xl flex items-center gap-1 p-[1rem] text-4xl font-bold"
+              ref={playBtnRef}
+              className="film-landing-viewButton flex items-center justify-center gap-1 rounded-full bg-white p-2 font-bold text-[var(--backdropColor)] drop-shadow-xl transition-all duration-300 ease-out hover:bg-[var(--backdropColor)] hover:text-white"
+              style={{
+                '--backdropColor': `${backdropColor}`,
+              }}
               onClick={() => {
                 if (matchedFilm.youtube !== '') {
                   setOpenModalId(matchedFilm.id)
@@ -142,7 +198,7 @@ export default function Landing() {
                 }
               }}
             >
-              <BiPlay className="film-landing-viewButton-icon" />
+              <BiPlay className="film-landing-viewButton-icon pl-1 text-4xl" />
               {/* <div className="text-lg">TRAILER</div> */}
             </div>
           </div>
@@ -178,7 +234,10 @@ export default function Landing() {
                   </div>
                   {matchedFilm?.pressGallery && (
                     <div
-                      className="film-landing-press ml-1 flex items-center gap-1 border-1 p-2"
+                      className="film-landing-press ml-1 flex items-center gap-1 rounded-sm border-1 bg-transparent p-2 text-white transition-all duration-300 ease-out hover:bg-white hover:text-[var(--backdropColor)]"
+                      style={{
+                        '--backdropColor': `${backdropColor}`,
+                      }}
                       onClick={() => {
                         setOpenPressId(matchedFilm.id)
                         setPressOpened(true)
@@ -244,7 +303,7 @@ export default function Landing() {
                 </div>
                 {matchedFilm?.pressGallery && (
                   <div className="film-landing-press-mobile mt-3">
-                    <div className="flex max-w-[10rem] min-w-[8rem] items-center gap-1 border-1 p-1 pl-2.5">
+                    <div className="flex max-w-[10rem] min-w-[8rem] items-center gap-1 rounded-sm border-1 p-1 pl-2.5">
                       <div>
                         <BiNews />
                       </div>

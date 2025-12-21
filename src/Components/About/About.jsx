@@ -19,7 +19,7 @@ export default function About() {
         <div className="relative flex h-auto w-[35%] max-w-[540px] min-w-[320px] flex-col gap-2 p-2">
           <img src="about/about.jpg" alt="" className="rounded-xl border-1" />
           <div className="rounded-xl border-1 bg-zinc-50 p-4">
-            Duc Dam is a fullstack developer born in Hanoi and based in
+            Duc Dam is a software developer born in Hanoi and based in
             Philadelphia. This portfolio showcases some of the things that he's
             up to in his free time.
           </div>

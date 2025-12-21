@@ -95,7 +95,7 @@ export default function NavSection() {
 
       {isHamburger && (
         <>
-          <div className="absolute top-0 z-80 z-100 flex h-auto max-h-[5rem] w-full items-center justify-start border-b-1 bg-zinc-50">
+          <div className="absolute top-0 z-80 z-100 flex h-auto max-h-[5rem] w-full items-center justify-start bg-zinc-50">
             <button className="p-1 pl-4">
               {menuOpened ? (
                 <MdClose

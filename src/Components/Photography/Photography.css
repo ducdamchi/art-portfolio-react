@@ -233,8 +233,9 @@
   position: absolute;
   top: 40%;
   z-index: 2;
-  border-width: 1px;
-  border-color: white;
+  /* border-width: 1px; */
+  /* border-color: white; */
+  /* padding: 1rem; */
   /* -webkit-backdrop-filter: blur(4px); */
   /* backdrop-filter: blur(4px); */
   /* box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37); */
@@ -242,8 +243,7 @@
   /* background: rgba(255, 255, 255, 0.1); */
   /* background: rgb(255, 255, 255); */
 
-  padding: 1rem;
-  color: white;
+  /* color: white; */
 }
 
 .photo-landing-mobile-title-year {

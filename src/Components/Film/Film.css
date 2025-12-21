@@ -168,10 +168,10 @@
   transition: 200ms ease-out;
 }
 
-.film-landing-viewButton:hover {
+/* .film-landing-viewButton:hover {
   background-color: white;
   color: rgba(0, 0, 0, 50);
-}
+} */
 
 .film-landing-viewButton:hover .film-landing-viewButton-icon {
   scale: 1.05;
@@ -208,9 +208,9 @@
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
   border: 1px solid rgba(255, 255, 255, 0.18);
   background: rgba(255, 255, 255, 0.1); */
-  border: 1px solid rgba(255, 255, 255, 1);
+  /* border: 1px solid rgba(255, 255, 255, 1); */
   /* padding: 1rem; */
-  color: white;
+  /* color: white; */
 }
 
 .film-landing-info-all {
@@ -266,9 +266,9 @@
 }
 
 .film-landing-press {
-  transition: 200ms ease-out;
+  /* transition: 200ms ease-out; */
   margin-left: 1rem;
-  color: white;
+  /* color: white; */
 }
 
 .film-landing-press:hover {
