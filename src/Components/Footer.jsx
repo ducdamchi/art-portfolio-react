@@ -14,7 +14,7 @@ export default function Footer() {
         <div className="text-black">
           <div className="flex items-center gap-1 text-[0.6rem] font-thin">
             <span className="footer-text">
-              DEVELOPED BY &#169; DUC DAM 2025
+              DEVELOPED BY &#169; DUC DAM
             </span>
           </div>
         </div>

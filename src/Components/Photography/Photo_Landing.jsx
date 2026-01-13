@@ -126,7 +126,7 @@ export default function Landing() {
       img.addEventListener('load', applyColor)
       return () => img.removeEventListener('load', applyColor)
     }
-  }, [matchedAlbum?.id, isMobileMode, modalOpened])
+  }, [matchedAlbum?.id, modalOpened])
 
   /* Dynamically adjust the height of the landing page based on the height of the info box 
   boxHeight: height of infoBox

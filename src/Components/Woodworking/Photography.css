@@ -1,0 +1,450 @@
+@import 'tailwindcss';
+
+@layer theme, base, components, utilities;
+
+@import 'tailwindcss/theme.css' layer(theme);
+@import 'tailwindcss/preflight.css' layer(base);
+@import 'tailwindcss/utilities.css' layer(utilities);
+
+:root {
+  --slider-padding: 1.5rem;
+}
+
+.thumbnail-title-year {
+  display: flex;
+  position: absolute;
+  bottom: 0%;
+  left: 0%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  width: 80%;
+  height: 35%;
+  /* border-width: 2px;
+  border-color: blue; */
+  color: white;
+}
+
+.thumbnail-title {
+  position: absolute;
+  bottom: 25%;
+  left: 7%;
+  /* border-width: 2px;
+  border-color: blue; */
+  font-weight: 1000;
+  line-height: 0.9;
+  text-align: left;
+}
+
+.thumbnail-year {
+  font-weight: 300;
+}
+
+.thumbnail-title,
+.thumbnail-year,
+.thumbnail-description {
+  color: rgb(250, 250, 250);
+}
+
+/* HIGHTLIGHTS CAROUSEL */
+.carousel-whole {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  /* border-width: 2px;
+  border-color: orange; */
+  /* width: 100vw; */
+  /* height: auto; */
+  overflow: hidden;
+}
+
+.carousel-btn-bg {
+  position: absolute;
+  top: 0%;
+  z-index: 2;
+  transition: background-color 200ms ease-in-out;
+  background-color: rgb(250, 250, 250, 1);
+  width: var(--slider-padding);
+  height: 100%;
+}
+
+.carousel-whole:hover .carousel-btn-bg {
+  background-color: rgba(250, 250, 250, 0.4);
+}
+
+.carousel-btn {
+  /* border-width: 1px; */
+  /* width: var(--slider-padding); */
+  font-size: 1rem;
+}
+
+.btn-bg-left,
+.carousel-btn-left {
+  left: 0%;
+}
+
+.btn-bg-right,
+.carousel-btn-right {
+  right: 0%;
+}
+
+.thumbnail-img,
+.thumbnail-img-clone {
+  display: inline-block;
+  opacity: 1;
+  z-index: 2;
+  /* make sure ratio is uniform */
+  aspect-ratio: 3/2;
+  width: 100%;
+  /* make sure image is cropped, not stretched */
+  object-fit: cover;
+}
+
+.thumbnail-img-overlay {
+  position: absolute;
+  top: 0rem;
+  /* border-width: 1px;
+  border-color: red; */
+  background-image: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.3) 15%,
+    rgba(0, 0, 0, 0) 35%
+  );
+  width: 100%;
+  height: 100%;
+}
+
+.thumbnail-flex-item {
+  position: relative;
+  flex: none;
+  padding: 0.2rem;
+  text-align: center;
+  /* background-color: white; */
+}
+
+.thumbnail-box {
+  scale: 1;
+  z-index: 2;
+  transition: 200ms ease-in-out;
+}
+
+.thumbnail-box:hover {
+  transition-delay: 400ms;
+  box-shadow: 1px 1px 5px 0.02px rgba(0, 0, 0, 0.43);
+}
+
+@keyframes slidedown {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.thumbnail-description {
+  position: relative;
+  z-index: -1;
+  backdrop-filter: blur(4px);
+  animation-duration: 150ms;
+  animation-timing-function: ease-in;
+  /* border-width: 4px;
+  border-color: blue; */
+
+  animation-name: slidedown;
+  /* border: 1px solid rgba(255, 255, 255, 0.18); */
+  background-color: #6d6d6d;
+  padding: 1.5rem;
+  width: 100%;
+  text-align: left;
+}
+
+/* w-screen h-auto absolute z-1 top-0 left-0 */
+
+.modal-navbar-back {
+  justify-self: start;
+  transition: 200ms ease-out;
+}
+
+.photo-landing-button-back {
+  transition: 200ms ease-out;
+}
+
+.modal-navbar-back:hover,
+.photo-landing-button-back:hover {
+  scale: 1.05;
+  text-decoration: underline;
+}
+
+/* SLIDES VIEW MODE CONTENT */
+@media (max-height: 28.125rem) {
+  .modal-topRightNav {
+    gap: 0.3125rem;
+  }
+}
+
+/* .slides-each {
+  opacity: 0;
+  transition: opacity 200ms ease-in-out;
+} */
+/* 
+.slides-each.visible {
+  opacity: 1;
+  transition: opacity 200ms ease-in-out;
+} */
+/**************** LANDING PAGE *****************/
+
+.photo-landing-background,
+.photo-landing-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.photo-landing-overlay {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25));
+}
+
+.photo-landing-backArrow-wrapper-1 {
+  position: absolute;
+  top: 2rem;
+  z-index: 2;
+  width: 100%;
+  color: white;
+}
+
+.photo-landing-backArrow {
+  position: relative;
+  transition: 200ms ease-out;
+  color: white;
+}
+
+.photo-landing-backArrow:hover {
+  scale: 1.05;
+  text-decoration: underline;
+}
+
+.photo-landing-viewButton {
+  position: absolute;
+  top: 40%;
+  z-index: 2;
+  /* border-width: 1px; */
+  /* border-color: white; */
+  /* padding: 1rem; */
+  /* -webkit-backdrop-filter: blur(4px); */
+  /* backdrop-filter: blur(4px); */
+  /* box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37); */
+  /* border: 1px solid rgba(255, 255, 255, 0.18); */
+  /* background: rgba(255, 255, 255, 0.1); */
+  /* background: rgb(255, 255, 255); */
+
+  /* color: white; */
+}
+
+.photo-landing-mobile-title-year {
+  position: absolute;
+  /* top: 20%; */
+  bottom: 0%;
+  left: 0%;
+  z-index: 3;
+  /* padding: 1rem; */
+  width: 100%;
+  min-width: 10rem;
+  /* background: rgb(255, 255, 255); */
+  color: white;
+}
+
+.photo-landing-button-back,
+.photo-landing-button-view {
+  transition: 200ms ease-out;
+}
+
+.photo-landing-button-back:hover,
+.photo-landing-button-view:hover {
+  scale: 1.05;
+  text-decoration: underline;
+}
+
+.photo-landing-info-all {
+  display: flex;
+  position: absolute;
+
+  top: 12.5%;
+  justify-content: start;
+  z-index: 2;
+  background: rgb(250, 250, 250);
+  width: 60%;
+  min-width: 40rem;
+  max-width: 80rem;
+  height: auto;
+}
+
+.photo-landing-info {
+  z-index: 2;
+  color: black;
+}
+
+/* GALLERY VIEW MODE CONTENT */
+.gallery-all {
+  display: grid;
+  position: absolute;
+  top: -5%;
+  /* bottom: 10rem; */
+  grid-template-columns: repeat(3, minmax(3.125rem, 37.5rem));
+  justify-content: center;
+  align-items: center;
+  gap: 1.875rem;
+  padding-bottom: 10rem;
+  padding: 2rem;
+}
+
+/* @media (max-height: 75rem) {
+  .gallery-all {
+    max-height: 56.25rem;
+  }
+} */
+
+.gallery-each {
+  opacity: 1;
+  transition: opacity 200ms ease-in-out;
+}
+
+.gallery-each:hover {
+  opacity: 0.75;
+}
+
+/* Responsive based on width */
+@media (min-width: 0rem) {
+  .modal-flexContainer {
+    height: 50%;
+  }
+}
+
+@media (min-width: 20rem) {
+  :root {
+    --slider-padding: 2rem;
+  }
+
+  .carousel-btn {
+    font-size: 1.2rem;
+  }
+
+  .thumbnail-flex-item {
+    padding: 0.8rem;
+    width: 100%;
+    /* height: 15rem; */
+  }
+
+  .thumbnail-box:hover {
+    scale: 1.02;
+  }
+}
+
+@media (min-width: 30rem) {
+  :root {
+    --slider-padding: 2.5rem;
+  }
+
+  .carousel-btn {
+    font-size: 1.5rem;
+  }
+
+  /* .gallery-all {
+    gap: 5px;
+  } */
+}
+
+@media (min-width: 40rem) {
+  :root {
+    --slider-padding: 3rem;
+  }
+
+  .carousel-btn {
+    font-size: 2rem;
+  }
+
+  .thumbnail-flex-item {
+    padding: 1rem;
+  }
+}
+
+@media (min-width: 48rem) {
+  :root {
+    --slider-padding: 4rem;
+  }
+
+  .carousel-btn {
+    font-size: 2.5rem;
+  }
+
+  .thumbnail-flex-item {
+    padding: 1.5rem;
+  }
+
+  .thumbnail-box:hover {
+    scale: 1.05;
+  }
+
+  .gallery-all {
+    top: 10rem;
+  }
+}
+
+@media (min-width: 64rem) {
+  .thumbnail-flex-item {
+    padding: 1.2rem;
+  }
+
+  .gallery-all {
+    /* top: 12rem; */
+  }
+}
+
+@media (min-width: 80rem) {
+  :root {
+    --slider-padding: 5rem;
+  }
+
+  .carousel-btn {
+    font-size: 3rem;
+  }
+
+  .thumbnail-flex-item {
+    padding: 1.8rem;
+  }
+}
+
+@media (min-width: 96rem) {
+  :root {
+    --slider-padding: 6rem;
+  }
+
+  .thumbnail-flex-item {
+    padding: 1.5rem;
+  }
+}
+
+@media (min-width: 120rem) {
+  :root {
+    --slider-padding: 7rem;
+  }
+
+  .thumbnail-flex-item {
+    padding: 2rem;
+  }
+}
+
+/* @media (min-height: 0rem) {  .photo-landing-info-all {
+    bottom: 10%;
+  }
+}
+@media (min-height: 48rem) {
+  .photo-landing-info-all {
+    bottom: 15%;
+  }
+} */

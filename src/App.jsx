@@ -6,6 +6,7 @@ import Photo_Landing from './Components/Photography/Photo_Landing'
 import Film from './Components/Film/Film'
 import Film_Landing from './Components/Film/Film_Landing'
 import Woodworking from './Components/Woodworking/Woodworking'
+import Wood_Landing from './Components/Woodworking/Photo_Landing'
 import About from './Components/About/About'
 import Contact from './Components/Contact/Contact'
 
@@ -33,6 +34,7 @@ export default function App() {
           <Route path="/film" element={<Film />} />
           <Route path="/film/:filmURL" element={<Film_Landing />} />
           <Route path="/woodworking" element={<Woodworking />} />
+          <Route path="/woodworking/:woodURL" element={<Wood_Landing />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
         </Routes>

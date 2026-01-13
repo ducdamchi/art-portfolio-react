@@ -78,6 +78,10 @@ export default function NavSection() {
               <CustomLink to="/film">Film</CustomLink>
             </div>
 
+            <div className="navbar-item m-1 inline-block p-1 duration-200 ease-out hover:scale-[1.05]">
+              <CustomLink to="/woodworking">Woodworking</CustomLink>
+            </div>
+
             {/* <div className="navbar-item m-1 inline-block p-1 duration-200 ease-out hover:scale-[1.05]">
               <Link to="/woodworking">Woodworking</Link>
             </div> */}
@@ -122,6 +126,10 @@ export default function NavSection() {
 
               <div className="navbar-item inline-block w-full border-t-1 border-zinc-200 p-2 pl-5">
                 <CustomLink to="/film">Film</CustomLink>
+              </div>
+
+              <div className="navbar-item inline-block w-full border-t-1 border-zinc-200 p-2 pl-5">
+                <CustomLink to="/woodworking">Woodworking</CustomLink>
               </div>
 
               {/* <div className="navbar-item inline-block w-full border-t-1 border-zinc-200 p-2 pl-5">
