@@ -467,11 +467,11 @@
   "id": 11,
   "title": "Weight Rack",
   "description": [
-   "A weight rack."
+   "This project started as I needed an efficient way to store Olympics weight for a personal workout setup. I designed steep miter saw cuts where different parts meet one another to emphasize the triangular structure of the rack. The long pegs on which the weights are mounted was connected to the main body through chiseled square holes, which are secured with heavy-duty screws coming from the opposite direction."
   ],
   "year": "2025",
-  "dimensions": "a x b x c inches",
-  "materials": "Pine wood.",
+  "dimensions": "41 x 32 x 18 inches",
+  "materials": "Pine",
   "thumbnail": {
    "id": "11.0",
    "src": "woodworking/13-weight-rack/thumb.jpg",
