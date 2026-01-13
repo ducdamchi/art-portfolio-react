@@ -1,0 +1,12 @@
+{
+  "title": "Triangle Low Chairs",
+  "year": "2024",
+  "description": [
+    "I designed these chairs with one question in mind: what's the minimum number of wood pieces that it takes to make a sturdy chair? After many sketches, 3 seemed like an appropriate answer. It is perhaps not by coincidence that the triangle is the strongest and most stable shape in geometry, its rigidity preventing it from collapsing under pressure. To further entertain the mathematical beauty of this idea, I decided to incorporate a Pythagorean triple into the design, such that the interections of the joints would form three edges measuring to an exact 3:4:5 ratio.",
+    "The low form of the chair was inspired by the street food and drinks culture in Vietnam, where people sit on very low chairs and tables just for the duration of the meal before standing up and leave. It is less about sinking into comfort, and more about savoring an experience for a quick moment. After many prototypes, I decided on a scissor joint of the two surfaces that would form the legs, and a half-domino joint of the surface that would become the seating area into the remaining two.",
+    "The project took about 3 months to complete."
+  ],
+  "dimensions": "18 x 14 x 16 inches",
+  "materials": "Plywood, hardwood pegs",
+  "captions": []
+}
